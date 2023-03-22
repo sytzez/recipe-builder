@@ -1,15 +1,16 @@
 import { RecipeStep } from '../types/recipe-step'
-import { Cost } from '../types/cost'
+import { Cost, NoCost } from '../types/cost'
 import { ingredientQuantityCost } from "./ingredient-quantity-cost";
+import { sumOfCosts } from "./sumOfCosts";
 
 export const recipeStepCost = (recipeStep: RecipeStep): Cost => {
     switch (recipeStep.type) {
         case 'action':
-            return 0 as Cost
+            return NoCost
+
         case 'add-ingredients':
-            return recipeStep.quantities.reduce(
-                (costAccumulator, ingredientQuantity) => costAccumulator + ingredientQuantityCost(ingredientQuantity),
-                0 as Cost
-            )
+            return recipeStep.quantities
+                .map(ingredientQuantityCost)
+                .reduce(sumOfCosts)
     }
 }
