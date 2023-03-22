@@ -39,6 +39,7 @@ export const IngredientComponent: Component = () => {
         <div>
             <h3>{name}</h3>
             <p>{cost} per {unitType}</p>
+            <button>Edit</button>
         </div>
     )
 }
