@@ -56,7 +56,9 @@ export const IngredientList = (props: IngredientListProps) => {
                             </Show>
                             <Show when={!isEditingIngredient(ingredient)}>
                                 <h1>{ingredient.data.name}</h1>
-                                <Button label={"Update"} onClick={editIngredient(ingredient)} />
+                                <p>{ingredient.data.unitType}</p>
+                                <p>{ingredient.data.cost}</p>
+                                <Button label={"Edit Ingredient"} onClick={editIngredient(ingredient)} />
                             </Show>
                         </>
                     )}
