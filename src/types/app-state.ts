@@ -5,3 +5,8 @@ export interface AppState {
     ingredients: Ingredient[],
     recipes: Recipe[],
 }
+
+export const initialAppState = {
+    ingredients: [],
+    recipes: [],
+}

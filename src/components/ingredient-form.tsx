@@ -7,7 +7,9 @@ import { TextInput } from "./form/text-input";
 
 export interface IngredientFormProps {
     ingredient: Ingredient | null
+    submitLabel: string
     onSubmit: (Ingredient) => void
+    onCancel: () => void
 }
 
 interface Fields {
@@ -37,12 +39,12 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         })
     }
 
-    const [setField, onSubmit] = useForm<Fields>(initialFields, validationCallback, submitCallback)
+    const [setField, onSubmit] = useForm<Fields>({ ...initialFields }, validationCallback, submitCallback)
 
     return (
         <form
             onSubmit={onSubmit}
-            class="bg-white shadow-md rounded px-8 py-6 mb-4"
+            class="bg-white shadow-md rounded p-8 mb-4"
         >
             <TextInput
                 name="name"
@@ -70,9 +72,15 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
             />
             <input
                 type="submit"
-                value="Save"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                value={props.submitLabel}
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
             />
+            <button
+                onClick={props.onCancel}
+                class="bg-gray-100 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+                Cancel
+            </button>
         </form>
     )
 }
