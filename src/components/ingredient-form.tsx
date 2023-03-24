@@ -1,10 +1,11 @@
 import { Component, createSignal } from "solid-js";
-import { Ingredient } from "../types/ingredient";
+// import { Ingredient } from "../types/ingredient";
 import { UnitType } from "../types/unit-type";
 import { Cost } from "../types/cost";
 import { useForm } from "../utilities/use-form";
+import { TextInput } from "./form/text-input";
 
-interface Props {
+export interface IngredientFormProps {
     ingredient: Ingredient | null
     onSubmit: (Ingredient) => void
 }
@@ -21,7 +22,7 @@ const emptyFields: Fields = {
     cost: '',
 }
 
-export const IngredientForm: Component = (props: Props) => {
+export const IngredientForm: Component = (props: IngredientFormProps) => {
     const initialFields = props.ingredient || emptyFields
 
     const validationCallback = (fields: Fields) => {
@@ -43,54 +44,30 @@ export const IngredientForm: Component = (props: Props) => {
             onSubmit={onSubmit}
             class="bg-white shadow-md rounded px-8 py-6 mb-4"
         >
-            <div class="mb-4">
-                <label
-                    class="block text-gray-700 font-bold mb-2"
-                    for="name"
-                >
-                    Name
-                </label>
-                <input
-                    id="name"
-                    type="text"
-                    placeholder="Honey"
-                    value={initialFields.name}
-                    onChange={setField('name')}
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-            </div>
-            <div class="mb-4">
-                <label
-                    class="block text-gray-700 font-bold mb-2"
-                    for="name"
-                >
-                    Unit of measurement
-                </label>
-                <input
-                    id="unitType"
-                    type="text"
-                    placeholder="Teaspoon"
-                    value={initialFields.unitType}
-                    onChange={setField('unitType')}
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-            </div>
-            <div class="mb-4">
-                <label
-                    class="block text-gray-700 font-bold mb-2"
-                    for="name"
-                >
-                    Cost per unit of measurement
-                </label>
-                <input
-                    id="name"
-                    type="number"
-                    placeholder="0.05"
-                    value={initialFields.cost}
-                    onChange={setField('cost')}
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-            </div>
+            <TextInput
+                name="name"
+                label="Name"
+                type="text"
+                placeholder="Honey"
+                initialValue={initialFields.name}
+                onChange={setField('name')}
+            />
+            <TextInput
+                name="unitType"
+                label="Unit of measurement"
+                type="text"
+                placeholder="Teaspoon"
+                initialValue={initialFields.unitType}
+                onChange={setField('unitType')}
+            />
+            <TextInput
+                name="cost"
+                label="Cost per unit of measurement"
+                type="text"
+                placeholder="0.05"
+                initialValue={initialFields.cost}
+                onChange={setField('cost')}
+            />
             <input
                 type="submit"
                 value="Save"

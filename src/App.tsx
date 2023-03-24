@@ -3,7 +3,7 @@ import { IngredientForm } from "./components/ingredient-form";
 
 const App: Component = () => {
   return (
-      <IngredientForm ingredient={null} />
+      <IngredientForm ingredient={null} onSubmit={console.log} />
   )
 }
 
