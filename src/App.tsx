@@ -1,9 +1,9 @@
 import type { Component } from 'solid-js'
-import { IngredientComponent } from "./components/ingredient-component";
+import { IngredientForm } from "./components/ingredient-form";
 
 const App: Component = () => {
   return (
-      <IngredientComponent />
+      <IngredientForm ingredient={null} />
   )
 }
 
