@@ -29,6 +29,14 @@ This is what makes SolidJS outperform most other front-end frameworks.
 ### Contexts/providers
 
 SolidJS' form of dependency injection, and a way to access the same store from multiple components.
+By using a context, a component gets access to the main store and to an 'actions' object containing all possible actions to perform.
+This creates a nice separation of concerns.
+
+### TypeScript type inference
+
+In this project I stopped using as many typehints as I used to.
+I also made use of TypeScript's `ReturnType` to infer the return type of a function rather than defining the return type myself.
+This was very useful for automatically and correctly defining the type of the actions object.
 
 ### Yup schema validation
 

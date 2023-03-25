@@ -2,10 +2,7 @@ import { SetStoreFunction, Store } from "solid-js/store";
 import { AppState } from "../types/app-state";
 import { Ingredient } from "../types/ingredient";
 
-export interface IngredientActions {
-    createIngredient: (ingredient: Ingredient) => number
-    updateIngredient: (id: number) => (ingredient: Ingredient) => void
-}
+export type IngredientActions = ReturnType<typeof createIngredientActions>
 
 export const createIngredientActions = (appState: Store<AppState>, setAppState: SetStoreFunction<AppState>) => {
     return {
