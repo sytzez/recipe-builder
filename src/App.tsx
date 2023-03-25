@@ -3,12 +3,15 @@ import { IngredientForm } from "./components/ingredient-form";
 import { IngredientList } from "./components/ingredient-list";
 import { createStore } from "solid-js/store";
 import { AppState, initialAppState } from "./types/app-state";
+import { AppProvider } from "./stores/app";
 
 const App: Component = () => {
   const [appState, setAppState] = createStore<AppState>(initialAppState)
 
   return (
-      <IngredientList ingredients={[]} />
+      <AppProvider>
+        <IngredientList ingredients={[]} />
+      </AppProvider>
   )
 }
 

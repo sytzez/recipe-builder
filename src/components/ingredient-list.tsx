@@ -1,68 +1,47 @@
-import { Ingredient } from "../types/ingredient";
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For, Index, Show } from "solid-js";
 import { IngredientForm } from "./ingredient-form";
-import { Entity } from "../types/entity";
-import { create } from "../functions/create";
 import { Button } from "./elements/button";
+import { useApp } from "../stores/app";
 
-export interface IngredientListProps {
-    ingredients: Entity<Ingredient>[]
-}
-
-export const IngredientList = (props: IngredientListProps) => {
-    const [ingredients, setIngredients] = createSignal(props.ingredients)
+export const IngredientList = (props) => {
+    const [app, actions] = useApp()
     const [isCreating, setCreating] = createSignal(false)
     const [editingIngredientId, setEditingIngredientId] = createSignal<number | null>(null)
-
-    const newIngredient = () => setCreating(true)
-    const cancelCreatingIngredient = () => setCreating(false)
-    const createIngredient = (ingredient: Ingredient) => {
-        setIngredients([...ingredients(), create<Ingredient>(ingredient)])
-        setCreating(false)
-    }
-    const updateIngredient = (entity: Entity<Ingredient>) => (newData: Ingredient) => {
-        console.log("update ingredient", entity.id)
-        entity.setData(newData)
-        setEditingIngredientId(null)
-    }
-    const editIngredient = (entity: Entity<Ingredient>) => () => setEditingIngredientId(entity.id)
-    const cancelEditingIngredient = () => setEditingIngredientId(null)
-    const isEditingIngredient = (entity: Entity<Ingredient>) => editingIngredientId() == entity.id
 
     return (
         <>
             <Show
                 when={isCreating()}
-                fallback={<Button label="New Ingredient" onClick={newIngredient} />}
+                fallback={<Button label="New Ingredient" onClick={() => setCreating(true)} />}
             >
                 <IngredientForm
                     ingredient={null}
                     submitLabel="Create Ingredient"
-                    onSubmit={createIngredient}
-                    onCancel={cancelCreatingIngredient}
+                    onSubmit={actions.createIngredient}
+                    onCancel={() => setCreating(false)}
                 ></IngredientForm>
             </Show>
             <div class="bg-white shadow-md rounded p-8 my-4">
-                <For each={ingredients()}>
-                    {(ingredient) => (
+                <Index each={app.ingredients}>
+                    {(ingredient, id) => (
                         <>
-                            <Show when={isEditingIngredient(ingredient)}>
+                            <Show when={() => editingIngredientId() === id}>
                                 <IngredientForm
-                                    ingredient={ingredient.data}
+                                    ingredient={ingredient()}
                                     submitLabel="Update Ingredient"
-                                    onSubmit={updateIngredient(ingredient)}
-                                    onCancel={cancelEditingIngredient}
+                                    onSubmit={actions.updateIngredient(id)}
+                                    onCancel={() => setEditingIngredientId(null)}
                                 ></IngredientForm>
                             </Show>
-                            <Show when={!isEditingIngredient(ingredient)}>
-                                <h1>{ingredient.data.name}</h1>
-                                <p>{ingredient.data.unitType}</p>
-                                <p>{ingredient.data.cost}</p>
-                                <Button label={"Edit Ingredient"} onClick={editIngredient(ingredient)} />
+                            <Show when={() => editingIngredientId() !== id}>
+                                <h1>{ingredient().name}</h1>
+                                <p>{ingredient().unitType}</p>
+                                <p>{ingredient().cost}</p>
+                                <Button label={"Edit Ingredient"} onClick={() => setEditingIngredientId(id)} />
                             </Show>
                         </>
                     )}
-                </For>
+                </Index>
             </div>
         </>
     )
