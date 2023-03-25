@@ -1,4 +1,4 @@
-import { createSignal, For, Index, Show } from "solid-js";
+import { createSignal, Index, Show } from "solid-js";
 import { IngredientForm } from "./ingredient-form";
 import { Button } from "./elements/button";
 import { useApp } from "../stores/app";
@@ -25,7 +25,7 @@ export const IngredientList = (props) => {
                 <Index each={app.ingredients}>
                     {(ingredient, id) => (
                         <>
-                            <Show when={() => editingIngredientId() === id}>
+                            <Show when={editingIngredientId() === id}>
                                 <IngredientForm
                                     ingredient={ingredient()}
                                     submitLabel="Update Ingredient"
@@ -33,7 +33,7 @@ export const IngredientList = (props) => {
                                     onCancel={() => setEditingIngredientId(null)}
                                 ></IngredientForm>
                             </Show>
-                            <Show when={() => editingIngredientId() !== id}>
+                            <Show when={editingIngredientId() !== id}>
                                 <h1>{ingredient().name}</h1>
                                 <p>{ingredient().unitType}</p>
                                 <p>{ingredient().cost}</p>
