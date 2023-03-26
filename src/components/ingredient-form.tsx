@@ -8,6 +8,7 @@ import { ingredientSchema } from "../schemata/ingredient";
 
 export interface IngredientFormProps {
     ingredient: Ingredient | null
+    title: string
     submitLabel: string
     onSubmit: (Ingredient) => void
     onCancel: () => void
@@ -35,6 +36,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
             onSubmit={onSubmit}
             class="bg-white shadow-md rounded p-8 mb-4"
         >
+            <h1 class="font-bold text-2xl text-gray-800 mb-4">{props.title}</h1>
             <TextInput
                 name="name"
                 label="Name"

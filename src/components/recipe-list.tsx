@@ -23,8 +23,8 @@ export const RecipeList = () => {
 
     return (
         <>
-            <div class="flex justify-between">
-                <h1 class="font-bold text-2xl text-gray-800 mb-2">Recipes</h1>
+            <div class="flex justify-between mb-4">
+                <h1 class="font-bold text-2xl text-gray-800">Recipes</h1>
                 <Show when={!isCreating()}>
                     <Button label="New recipe" onClick={() => setCreating(true)} />
                 </Show>
@@ -38,7 +38,7 @@ export const RecipeList = () => {
                     submitLabel="Create recipe"
                 />
             </Show>
-            <div class="bg-white shadow-lg rounded p-8 my-4">
+            <div class="bg-white shadow-lg rounded p-8 mb-4">
                 <Index
                     each={app.recipes}
                     fallback={<p class="italic text-gray-700">No recipes yet.</p>}

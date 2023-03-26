@@ -8,7 +8,6 @@ export const Home = () => {
                 <RecipeList/>
             </section>
             <section>
-                <h1 class="font-bold text-2xl text-gray-800 mb-2">Ingredients</h1>
                 <IngredientList/>
             </section>
         </main>

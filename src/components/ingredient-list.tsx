@@ -21,18 +21,22 @@ export const IngredientList = () => {
 
     return (
         <>
-            <Show
-                when={isCreating()}
-                fallback={<Button label="New ingredient" onClick={() => setCreating(true)} />}
-            >
+            <div class="flex justify-between mb-4">
+                <h1 class="font-bold text-2xl text-gray-800">Ingredients</h1>
+                <Show when={!isCreating()}>
+                    <Button label="New ingredient" onClick={() => setCreating(true)}/>
+                </Show>
+            </div>
+            <Show when={isCreating()}>
                 <IngredientForm
+                    title="New ingredient"
                     ingredient={null}
                     onSubmit={createIngredientAndStopCreating}
                     onCancel={() => setCreating(false)}
                     submitLabel="Create Ingredient"
                 />
             </Show>
-            <div class="bg-white shadow-lg rounded p-8 my-4">
+            <div class="bg-white shadow-lg rounded p-8 mb-4">
                 <Index
                     each={app.ingredients}
                     fallback={<p class="italic text-gray-700">No ingredients yet.</p>}
@@ -41,6 +45,7 @@ export const IngredientList = () => {
                         <>
                             <Show when={editingIngredientId() === id}>
                                 <IngredientForm
+                                    title="Edit ingredient"
                                     ingredient={ingredient()}
                                     onSubmit={updateIngredientAndStopEditing(id)}
                                     onCancel={() => setEditingIngredientId(null)}
