@@ -48,3 +48,7 @@ While I have written pure Javascript schema validation utilities in the past, Yu
 
 Unit testing in-source using Vitest, meaning the tests are in the same file as the actual code.
 This was useful for testing the Yup schemata.
+
+## Solid router
+
+SolidJS's way to add routes to an app.

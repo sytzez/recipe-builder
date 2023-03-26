@@ -9,6 +9,7 @@ import { RecipeStepForm } from "./recipe-step-form";
 
 export interface RecipeFormProps {
     recipe: Recipe | null
+    title: string
     submitLabel: string
     onSubmit: (Recipe) => void
     onCancel: () => void
@@ -41,8 +42,9 @@ export const RecipeForm = (props: RecipeFormProps) => {
     return (
         <form
             onSubmit={onSubmit}
-            class="bg-white shadow-md rounded p-8 mb-4"
+            class="bg-white shadow-lg rounded p-8 mb-4"
         >
+            <h1 class="font-bold text-2xl text-gray-800 mb-4">{props.title}</h1>
             <TextInput
                 name="title"
                 label="Title"
@@ -59,24 +61,30 @@ export const RecipeForm = (props: RecipeFormProps) => {
                 initialValue={initialFields.description}
                 onChange={setField('description')}
             />
-            <Index each={fields.steps}>
-                {(step, index) => (
-                    <>
-                        <p>{step().description}</p>
-                    </>
-                )}
-            </Index>
-            <Show
-                when={isCreatingStep()}
-                fallback={<Button label="Add step" onClick={() => setCreatingStep(true)} />}
-            >
-                <RecipeStepForm
-                    recipeStep={null}
-                    onSubmit={createStepAndStopCreating}
-                    onCancel={() => setCreatingStep(false)}
-                    submitLabel="Add step"
-                />
-            </Show>
+            <label class="block text-gray-700 font-bold mb-2">Steps</label>
+            <div class="bg-width shadow-md rounded p-8 mb-4">
+                <Index
+                    each={fields.steps}
+                    fallback={<p class="italic text-gray-700 mb-4">No recipe steps yet.</p>}
+                >
+                    {(step, index) => (
+                        <>
+                            <p>{step().description}</p>
+                        </>
+                    )}
+                </Index>
+                <Show
+                    when={isCreatingStep()}
+                    fallback={<Button label="Add step" onClick={() => setCreatingStep(true)} />}
+                >
+                    <RecipeStepForm
+                        recipeStep={null}
+                        onSubmit={createStepAndStopCreating}
+                        onCancel={() => setCreatingStep(false)}
+                        submitLabel="Add step"
+                    />
+                </Show>
+            </div>
             <input
                 type="submit"
                 value={props.submitLabel}

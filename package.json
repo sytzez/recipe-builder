@@ -20,6 +20,7 @@
     "vitest": "^0.29.7"
   },
   "dependencies": {
+    "@solidjs/router": "^0.8.2",
     "jsdom": "^21.1.1",
     "solid-js": "^1.6.10",
     "yup": "^1.0.2"

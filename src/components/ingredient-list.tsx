@@ -23,7 +23,7 @@ export const IngredientList = () => {
         <>
             <Show
                 when={isCreating()}
-                fallback={<Button label="New Ingredient" onClick={() => setCreating(true)} />}
+                fallback={<Button label="New ingredient" onClick={() => setCreating(true)} />}
             >
                 <IngredientForm
                     ingredient={null}
@@ -32,8 +32,11 @@ export const IngredientList = () => {
                     submitLabel="Create Ingredient"
                 />
             </Show>
-            <div class="bg-white shadow-md rounded p-8 my-4">
-                <Index each={app.ingredients}>
+            <div class="bg-white shadow-lg rounded p-8 my-4">
+                <Index
+                    each={app.ingredients}
+                    fallback={<p class="italic text-gray-700">No ingredients yet.</p>}
+                >
                     {(ingredient, id) => (
                         <>
                             <Show when={editingIngredientId() === id}>
