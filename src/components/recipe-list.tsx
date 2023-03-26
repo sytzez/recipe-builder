@@ -29,7 +29,7 @@ export const RecipeList = () => {
                     recipe={null}
                     onSubmit={createRecipeAndStopCreating}
                     onCancel={() => setCreating(false)}
-                    submitLabel="Create Recipe"
+                    submitLabel="Create recipe"
                 />
             </Show>
             <div class="bg-white shadow-md rounded p-8 my-4">
@@ -48,8 +48,8 @@ export const RecipeList = () => {
                                 <h1>{recipe().title}</h1>
                                 <p>{recipe().description}</p>
                                 <Show when={editingRecipeId() === null}>
-                                    <Button label={"View Recipe"}  onClick={() => {}} />
-                                    <Button label={"Edit Recipe"} onClick={() => setEditingRecipeId(id)} />
+                                    <Button label={"View recipe"} onClick={() => {}} />
+                                    <Button label={"Edit recipe"} onClick={() => setEditingRecipeId(id)} />
                                 </Show>
                             </Show>
                         </>

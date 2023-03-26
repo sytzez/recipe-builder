@@ -1,14 +1,15 @@
-import { createStore, Store } from "solid-js/store";
-import { ObjectSchema } from "yup";
+import { createStore, SetStoreFunction, Store } from "solid-js/store";
+import { ISchema } from "yup";
 
 export const useForm = <Fields extends object>(
     initialFields: Fields,
-    schema: ObjectSchema<any>,
+    schema: ISchema<any>,
     submitCallback: (Fields) => void,
 ): [
     Store<Fields>,
     (string) => (Event) => void,
     (SubmitEvent) => void,
+    SetStoreFunction<Fields>,
 ] => {
     const [fields, setFields] = createStore<Fields>(initialFields)
 
@@ -32,5 +33,5 @@ export const useForm = <Fields extends object>(
         }
     }
 
-    return [fields, setField, onSubmit]
+    return [fields, setField, onSubmit, setFields]
 }

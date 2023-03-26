@@ -28,15 +28,7 @@ const emptyFields: Fields = {
 export const IngredientForm: Component = (props: IngredientFormProps) => {
     const initialFields = props.ingredient || emptyFields
 
-    const submitCallback = (fields: Fields) => {
-        props.onSubmit({
-            name: fields.name,
-            unitType: fields.unitType,
-            cost: parseFloat(fields.cost as string),
-        })
-    }
-
-    const [, setField, onSubmit] = useForm<Fields>({ ...initialFields }, ingredientSchema, submitCallback)
+    const [, setField, onSubmit] = useForm<Fields>({ ...initialFields }, ingredientSchema, props.onSubmit)
 
     return (
         <form

@@ -2,8 +2,10 @@
 import { useForm } from "../utilities/use-form";
 import { TextInput } from "./form/text-input";
 import { recipeSchema } from "../schemata/recipe";
-import { createSignal, Index } from "solid-js";
+import { createSignal, Index, Show } from "solid-js";
 import { Button } from "./elements/button";
+import { RecipeStepForm } from "./recipe-step-form";
+// import { RecipeStep } from "../schemata/recipe-step";
 
 export interface RecipeFormProps {
     recipe: Recipe | null
@@ -27,17 +29,14 @@ const emptyFields = {
 export const RecipeForm = (props: RecipeFormProps) => {
     const initialFields = props.recipe || emptyFields
 
-    const submitCallback = (fields: Fields) => {
-        props.onSubmit({
-            title: fields.title,
-            description: fields.description,
-            steps: [],
-        })
-    }
-
-    const [fields, setField, onSubmit] = useForm<Fields>({ ...initialFields }, recipeSchema, submitCallback)
+    const [fields, setField, onSubmit, setFields] = useForm<Fields>({ ...initialFields }, recipeSchema, props.onSubmit)
     const [editingStepIndex, setEditingStepIndex] = createSignal<number | null>(null)
     const [isCreatingStep, setCreatingStep] = createSignal(false)
+
+    const createStepAndStopCreating = (step: RecipeStep) => {
+        setFields('steps', (steps) => [ ...steps, step ])
+        setCreatingStep(false)
+    }
 
     return (
         <form
@@ -63,7 +62,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
             <Index each={fields.steps}>
                 {(step, index) => (
                     <>
-                        <p>{step()}</p>
+                        <p>{step().description}</p>
                     </>
                 )}
             </Index>
@@ -71,7 +70,12 @@ export const RecipeForm = (props: RecipeFormProps) => {
                 when={isCreatingStep()}
                 fallback={<Button label="Add step" onClick={() => setCreatingStep(true)} />}
             >
-                <h1>TODO: create form</h1>
+                <RecipeStepForm
+                    recipeStep={null}
+                    onSubmit={createStepAndStopCreating}
+                    onCancel={() => setCreatingStep(false)}
+                    submitLabel="Add step"
+                />
             </Show>
             <input
                 type="submit"
