@@ -41,3 +41,7 @@ This was very useful for automatically and correctly defining the type of the ac
 ### Yup schema validation
 
 While I have written pure Javascript schema validation utilities in the past, Yup is a framework dedicated to making this easier and cleaner.
+
+### In-source testing
+
+Unit testing in-source using Vitest, meaning the tests are in the same file as the actual code.

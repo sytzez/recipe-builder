@@ -4,6 +4,7 @@ import { UnitType } from "../types/unit-type";
 import { Cost } from "../types/cost";
 import { useForm } from "../utilities/use-form";
 import { TextInput } from "./form/text-input";
+import { ingredientSchema } from "../types/ingredient";
 
 export interface IngredientFormProps {
     ingredient: Ingredient | null
@@ -27,10 +28,6 @@ const emptyFields: Fields = {
 export const IngredientForm: Component = (props: IngredientFormProps) => {
     const initialFields = props.ingredient || emptyFields
 
-    const validationCallback = (fields: Fields) => {
-        return true
-    }
-
     const submitCallback = (fields: Fields) => {
         props.onSubmit({
             name: fields.name,
@@ -39,7 +36,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         })
     }
 
-    const [setField, onSubmit] = useForm<Fields>({ ...initialFields }, validationCallback, submitCallback)
+    const [setField, onSubmit] = useForm<Fields>({ ...initialFields }, ingredientSchema, submitCallback)
 
     return (
         <form

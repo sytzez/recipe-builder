@@ -9,4 +9,7 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
+  test: {
+    includeSource: ['src/**/*.{ts,tsx}']
+  }
 });

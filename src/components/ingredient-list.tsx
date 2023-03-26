@@ -1,10 +1,10 @@
 import { createSignal, Index, Show } from "solid-js";
 import { IngredientForm } from "./ingredient-form";
 import { Button } from "./elements/button";
-import { useApp } from "../stores/app";
+import { useApp } from "../stores/app-context";
 import { Ingredient } from "../types/ingredient";
 
-export const IngredientList = (props) => {
+export const IngredientList = () => {
     const [app, actions] = useApp()
     const [isCreating, setCreating] = createSignal(false)
     const [editingIngredientId, setEditingIngredientId] = createSignal<number | null>(null)
@@ -27,10 +27,10 @@ export const IngredientList = (props) => {
             >
                 <IngredientForm
                     ingredient={null}
-                    submitLabel="Create Ingredient"
                     onSubmit={createIngredientAndStopCreating}
                     onCancel={() => setCreating(false)}
-                ></IngredientForm>
+                    submitLabel="Create Ingredient"
+                />
             </Show>
             <div class="bg-white shadow-md rounded p-8 my-4">
                 <Index each={app.ingredients}>
@@ -39,10 +39,10 @@ export const IngredientList = (props) => {
                             <Show when={editingIngredientId() === id}>
                                 <IngredientForm
                                     ingredient={ingredient()}
-                                    submitLabel="Update Ingredient"
                                     onSubmit={updateIngredientAndStopEditing(id)}
                                     onCancel={() => setEditingIngredientId(null)}
-                                ></IngredientForm>
+                                    submitLabel="Update Ingredient"
+                                />
                             </Show>
                             <Show when={editingIngredientId() !== id}>
                                 <h1>{ingredient().name}</h1>
