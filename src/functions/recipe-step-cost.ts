@@ -1,4 +1,4 @@
-import { RecipeStep } from '../types/recipe-step'
+import { RecipeStep } from '../schemata/recipe-step'
 import { Cost, NoCost } from '../types/cost'
 import { ingredientQuantityCost } from "./ingredient-quantity-cost";
 import { sumOfCosts } from "./sumOfCosts";

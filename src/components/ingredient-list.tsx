@@ -2,7 +2,7 @@ import { createSignal, Index, Show } from "solid-js";
 import { IngredientForm } from "./ingredient-form";
 import { Button } from "./elements/button";
 import { useApp } from "../stores/app-context";
-import { Ingredient } from "../types/ingredient";
+import { Ingredient } from "../schemata/ingredient";
 
 export const IngredientList = () => {
     const [app, actions] = useApp()

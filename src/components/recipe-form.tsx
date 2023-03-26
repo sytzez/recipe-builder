@@ -1,6 +1,7 @@
 // import { Recipe } from "../types/recipe";
 import { useForm } from "../utilities/use-form";
 import { TextInput } from "./form/text-input";
+import { recipeSchema } from "../schemata/recipe";
 
 export interface RecipeFormProps {
     recipe: Recipe | null
@@ -22,8 +23,6 @@ const emptyFields = {
 export const RecipeForm = (props: RecipeFormProps) => {
     const initialFields = props.recipe || emptyFields
 
-    const validationCallback = (fields: Fields) => true
-
     const submitCallback = (fields: Fields) => {
         props.onSubmit({
             title: fields.title,
@@ -32,7 +31,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
         })
     }
 
-    const [setField, onSubmit] = useForm<Fields>({ ...initialFields }, validationCallback, submitCallback)
+    const [setField, onSubmit] = useForm<Fields>({ ...initialFields }, recipeSchema, submitCallback)
 
     return (
         <form

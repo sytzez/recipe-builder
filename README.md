@@ -38,6 +38,8 @@ In this project I stopped using as many typehints as I used to.
 I also made use of TypeScript's `ReturnType` to infer the return type of a function rather than defining the return type myself.
 This was very useful for automatically and correctly defining the type of the actions object.
 
+I used Yup's `InferType` to create types from schemata, for example for Recipe and Ingredient.
+
 ### Yup schema validation
 
 While I have written pure Javascript schema validation utilities in the past, Yup is a framework dedicated to making this easier and cleaner.
@@ -45,3 +47,4 @@ While I have written pure Javascript schema validation utilities in the past, Yu
 ### In-source testing
 
 Unit testing in-source using Vitest, meaning the tests are in the same file as the actual code.
+This was useful for testing the Yup schemata.

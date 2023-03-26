@@ -1,5 +1,5 @@
-import { Ingredient } from "./ingredient";
-import { Recipe } from "./recipe";
+import { Ingredient } from "../schemata/ingredient";
+import { Recipe } from "../schemata/recipe";
 
 export interface AppState {
     ingredients: Ingredient[],

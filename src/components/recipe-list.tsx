@@ -1,6 +1,6 @@
 import { useApp } from "../stores/app-context";
 import { createSignal, Index, Show } from "solid-js";
-import { Recipe } from "../types/recipe";
+import { Recipe } from "../schemata/recipe";
 import { Button } from "./elements/button";
 import { RecipeForm } from "./recipe-form";
 

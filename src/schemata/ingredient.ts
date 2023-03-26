@@ -1,13 +1,13 @@
 import { InferType, number, object, string } from "yup";
-import { UnitType } from "./unit-type";
+import { UnitType, unitTypeSchema } from "./unit-type";
 
 export const ingredientSchema = object({
     name: string().required(),
-    unitType: string<UnitType>().oneOf(['units', 'spoons', 'grams']).required(),
+    unitType: unitTypeSchema.required(),
     cost: number().min(0).required(),
 })
 
-export type Ingredient = InferType<typeof ingredientSchema>
+export interface Ingredient extends InferType<typeof ingredientSchema> {}
 
 if (import.meta.vitest) {
     const { it, expect } = import.meta.vitest

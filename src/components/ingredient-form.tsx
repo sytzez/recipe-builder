@@ -1,10 +1,10 @@
 import { Component, createSignal } from "solid-js";
 // import { Ingredient } from "../types/ingredient";
-import { UnitType } from "../types/unit-type";
+import { UnitType } from "../schemata/unit-type";
 import { Cost } from "../types/cost";
 import { useForm } from "../utilities/use-form";
 import { TextInput } from "./form/text-input";
-import { ingredientSchema } from "../types/ingredient";
+import { ingredientSchema } from "../schemata/ingredient";
 
 export interface IngredientFormProps {
     ingredient: Ingredient | null

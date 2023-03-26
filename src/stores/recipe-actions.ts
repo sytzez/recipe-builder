@@ -1,6 +1,6 @@
 import { SetStoreFunction, Store } from "solid-js/store";
 import { AppState } from "../types/app-state";
-import { Recipe } from "../types/recipe";
+import { Recipe } from "../schemata/recipe";
 
 export type RecipeActions = ReturnType<typeof createRecipeActions>
 
