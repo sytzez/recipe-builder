@@ -36,7 +36,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         })
     }
 
-    const [setField, onSubmit] = useForm<Fields>({ ...initialFields }, ingredientSchema, submitCallback)
+    const [, setField, onSubmit] = useForm<Fields>({ ...initialFields }, ingredientSchema, submitCallback)
 
     return (
         <form

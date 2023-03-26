@@ -47,8 +47,10 @@ export const RecipeList = () => {
                             <Show when={editingRecipeId() !== id}>
                                 <h1>{recipe().title}</h1>
                                 <p>{recipe().description}</p>
-                                <Button label={"View Recipe"}  onClick={() => {}} />
-                                <Button label={"Edit Recipe"} onClick={() => setEditingRecipeId(id)} />
+                                <Show when={editingRecipeId() === null}>
+                                    <Button label={"View Recipe"}  onClick={() => {}} />
+                                    <Button label={"Edit Recipe"} onClick={() => setEditingRecipeId(id)} />
+                                </Show>
                             </Show>
                         </>
                     )}

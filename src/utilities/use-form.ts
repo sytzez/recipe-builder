@@ -1,11 +1,12 @@
-import { createStore } from "solid-js/store";
+import { createStore, Store } from "solid-js/store";
 import { ObjectSchema } from "yup";
 
 export const useForm = <Fields extends object>(
     initialFields: Fields,
-    schema: ObjectSchema,
+    schema: ObjectSchema<any>,
     submitCallback: (Fields) => void,
 ): [
+    Store<Fields>,
     (string) => (Event) => void,
     (SubmitEvent) => void,
 ] => {
@@ -26,9 +27,10 @@ export const useForm = <Fields extends object>(
         try {
             submitCallback(schema.validateSync(fields))
         } catch (e) {
+            alert(e) // TODO: display
             console.error(e)
         }
     }
 
-    return [setField, onSubmit]
+    return [fields, setField, onSubmit]
 }

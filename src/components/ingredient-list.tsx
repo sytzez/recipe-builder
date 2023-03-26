@@ -48,7 +48,9 @@ export const IngredientList = () => {
                                 <h1>{ingredient().name}</h1>
                                 <p>{ingredient().unitType}</p>
                                 <p>{ingredient().cost}</p>
-                                <Button label={"Edit Ingredient"} onClick={() => setEditingIngredientId(id)} />
+                                <Show when={editingIngredientId() === null}>
+                                    <Button label={"Edit Ingredient"} onClick={() => setEditingIngredientId(id)} />
+                                </Show>
                             </Show>
                         </>
                     )}

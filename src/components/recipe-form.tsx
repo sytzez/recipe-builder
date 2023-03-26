@@ -2,6 +2,8 @@
 import { useForm } from "../utilities/use-form";
 import { TextInput } from "./form/text-input";
 import { recipeSchema } from "../schemata/recipe";
+import { createSignal, Index } from "solid-js";
+import { Button } from "./elements/button";
 
 export interface RecipeFormProps {
     recipe: Recipe | null
@@ -13,11 +15,13 @@ export interface RecipeFormProps {
 interface Fields {
     title: string,
     description: string,
+    steps: any[],
 }
 
 const emptyFields = {
     title: '',
     description: '',
+    steps: [],
 }
 
 export const RecipeForm = (props: RecipeFormProps) => {
@@ -31,7 +35,9 @@ export const RecipeForm = (props: RecipeFormProps) => {
         })
     }
 
-    const [setField, onSubmit] = useForm<Fields>({ ...initialFields }, recipeSchema, submitCallback)
+    const [fields, setField, onSubmit] = useForm<Fields>({ ...initialFields }, recipeSchema, submitCallback)
+    const [editingStepIndex, setEditingStepIndex] = createSignal<number | null>(null)
+    const [isCreatingStep, setCreatingStep] = createSignal(false)
 
     return (
         <form
@@ -54,6 +60,19 @@ export const RecipeForm = (props: RecipeFormProps) => {
                 initialValue={initialFields.description}
                 onChange={setField('description')}
             />
+            <Index each={fields.steps}>
+                {(step, index) => (
+                    <>
+                        <p>{step()}</p>
+                    </>
+                )}
+            </Index>
+            <Show
+                when={isCreatingStep()}
+                fallback={<Button label="Add step" onClick={() => setCreatingStep(true)} />}
+            >
+                <h1>TODO: create form</h1>
+            </Show>
             <input
                 type="submit"
                 value={props.submitLabel}
