@@ -2,9 +2,16 @@ import { InferType, number, object, string } from "yup";
 import { UnitType, unitTypeSchema } from "./unit-type";
 
 export const ingredientSchema = object({
-    name: string().required(),
-    unitType: unitTypeSchema.required(),
-    cost: number().min(0).required(),
+    name: string()
+        .required()
+        .label('name'),
+    unitType: unitTypeSchema
+        .required()
+        .label('unit of measurement'),
+    cost: number()
+        .min(0)
+        .required()
+        .label('cost per unit of measurement'),
 })
 
 export interface Ingredient extends InferType<typeof ingredientSchema> {}

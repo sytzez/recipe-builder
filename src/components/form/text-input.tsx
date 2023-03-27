@@ -7,6 +7,7 @@ export interface TextInputProps {
     label: string
     initialValue: string
     onChange: (Event) => void
+    required?: boolean
 }
 
 export const TextInput: Component = (props: TextInputProps) => {
@@ -24,7 +25,8 @@ export const TextInput: Component = (props: TextInputProps) => {
                 placeholder={props.placeholder}
                 value={props.initialValue}
                 onChange={props.onChange}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black"
+                required={props.required}
             />
         </div>
     )

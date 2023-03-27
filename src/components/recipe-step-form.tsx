@@ -18,7 +18,11 @@ const emptyFields = {
 export const RecipeStepForm = (props: RecipeStepFormProps) => {
     const initialFields = props.recipeStep || emptyFields
 
-    const [, setField, onSubmit] = useForm({ ...initialFields }, recipeStepSchema, props.onSubmit)
+    const onError = (error) => {
+        console.log(error)
+    }
+
+    const { setField, onSubmit } = useForm({ ...initialFields }, recipeStepSchema, props.onSubmit, onError)
     
     return (
         <form

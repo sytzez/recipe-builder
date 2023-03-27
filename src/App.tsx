@@ -24,11 +24,13 @@ const App: Component = () => {
                 </div>
             </div>
         </nav>
-        <Routes>
-            <Route path="/" component={Home} />
-            <Route path="/ingredients" component={IngredientList} />
-            <Route path="/recipes/:id" component={IngredientList} />
-        </Routes>
+        <main class="max-w-7xl mx-auto">
+            <Routes>
+                <Route path="/" component={Home} />
+                <Route path="/ingredients" component={IngredientList} />
+                <Route path="/recipes/:id" component={IngredientList} />
+            </Routes>
+        </main>
     </>
 }
 

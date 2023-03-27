@@ -30,7 +30,11 @@ const emptyFields = {
 export const RecipeForm = (props: RecipeFormProps) => {
     const initialFields = props.recipe || emptyFields
 
-    const [fields, setField, onSubmit, setFields] = useForm<Fields>({ ...initialFields }, recipeSchema, props.onSubmit)
+    const onError = (error) => {
+        console.log(error)
+    }
+
+    const { fields, setField, setFields, onSubmit } = useForm<Fields>({ ...initialFields }, recipeSchema, props.onSubmit, onError)
     const [editingStepIndex, setEditingStepIndex] = createSignal<number | null>(null)
     const [isCreatingStep, setCreatingStep] = createSignal(false)
 

@@ -1,10 +1,11 @@
-import { Component, createSignal } from "solid-js";
+import { Component, createSignal, Show } from "solid-js";
 // import { Ingredient } from "../types/ingredient";
 import { UnitType } from "../schemata/unit-type";
 import { Cost } from "../types/cost";
 import { useForm } from "../utilities/use-form";
 import { TextInput } from "./form/text-input";
 import { ingredientSchema } from "../schemata/ingredient";
+import { ValidationError } from "yup";
 
 export interface IngredientFormProps {
     ingredient: Ingredient | null
@@ -29,7 +30,9 @@ const emptyFields: Fields = {
 export const IngredientForm: Component = (props: IngredientFormProps) => {
     const initialFields = props.ingredient || emptyFields
 
-    const [, setField, onSubmit] = useForm<Fields>({ ...initialFields }, ingredientSchema, props.onSubmit)
+    const [ error, setError ] = createSignal<ValidationError | null>(null)
+
+    const { setField, onSubmit } = useForm<Fields>({ ...initialFields }, ingredientSchema, props.onSubmit, setError)
 
     return (
         <form
@@ -44,6 +47,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
                 placeholder="Honey"
                 initialValue={initialFields.name}
                 onChange={setField('name')}
+                required
             />
             <TextInput
                 name="unitType"
@@ -52,26 +56,33 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
                 placeholder="Teaspoon"
                 initialValue={initialFields.unitType}
                 onChange={setField('unitType')}
+                required
             />
             <TextInput
                 name="cost"
                 label="Cost per unit of measurement"
-                type="text"
+                type="number"
                 placeholder="0.05"
                 initialValue={initialFields.cost}
                 onChange={setField('cost')}
+                required
             />
-            <input
-                type="submit"
-                value={props.submitLabel}
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
-            />
-            <button
-                onClick={props.onCancel}
-                class="bg-gray-100 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-                Cancel
-            </button>
+            <div class="mb-4">
+                <input
+                    type="submit"
+                    value={props.submitLabel}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
+                />
+                <button
+                    onClick={props.onCancel}
+                    className="bg-gray-100 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                    Cancel
+                </button>
+            </div>
+            <Show when={error()}>
+                {(error) => <p class="text-red-600 font-bold">{error.errors.join('. ')}</p>}
+            </Show>
         </form>
     )
 }

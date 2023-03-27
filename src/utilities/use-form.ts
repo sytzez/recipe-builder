@@ -1,37 +1,32 @@
 import { createStore, SetStoreFunction, Store } from "solid-js/store";
-import { ISchema } from "yup";
+import { ISchema, ValidationError } from "yup";
 
 export const useForm = <Fields extends object>(
     initialFields: Fields,
     schema: ISchema<any>,
-    submitCallback: (Fields) => void,
-): [
-    Store<Fields>,
-    (string) => (Event) => void,
-    (SubmitEvent) => void,
-    SetStoreFunction<Fields>,
-] => {
+    submitCallback: (f: Fields) => void,
+    errorCallback: (err: ValidationError) => void,
+) => {
     const [fields, setFields] = createStore<Fields>(initialFields)
 
-    const setField = (fieldName: string) => (event: Event) => {
-        const inputElement = event.currentTarget as HTMLInputElement
+    return {
+        fields,
+        setFields,
+        setField: (fieldName: string) => (event: Event) => {
+            const inputElement = event.currentTarget as HTMLInputElement
 
-        // @ts-ignore
-        setFields({
-            [fieldName]: inputElement.value
-        })
+            // @ts-ignore
+            setFields({
+                [fieldName]: inputElement.value
+            })
+        },
+        onSubmit: async (event: SubmitEvent) => {
+            event.preventDefault()
+            try {
+                submitCallback(await schema.validate(fields))
+            } catch (e) {
+                errorCallback(e)
+            }
+        },
     }
-
-    const onSubmit = (event: SubmitEvent) => {
-        event.preventDefault()
-
-        try {
-            submitCallback(schema.validateSync(fields))
-        } catch (e) {
-            alert(e) // TODO: display
-            console.error(e)
-        }
-    }
-
-    return [fields, setField, onSubmit, setFields]
 }
