@@ -2,6 +2,7 @@ import { useForm } from "../utilities/use-form";
 import { ActionStep } from "../schemata/action-step";
 import { recipeStepSchema } from "../schemata/recipe-step";
 import { TextInput } from "./form/text-input";
+import { Show } from "solid-js";
 
 export interface RecipeStepFormProps {
     recipeStep: ActionStep | null,
@@ -22,7 +23,7 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
         console.log(error)
     }
 
-    const { setField, onSubmit } = useForm({ ...initialFields }, recipeStepSchema, props.onSubmit, onError)
+    const { setField, onSubmit, validationError } = useForm({ ...initialFields }, recipeStepSchema, props.onSubmit, onError)
     
     return (
         <form
@@ -48,6 +49,9 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
             >
                 Cancel
             </button>
+            <Show when={validationError()}>
+                {(error) => <p class="text-red-600 font-bold">{error.errors.join('. ')}</p>}
+            </Show>
         </form>
     )
 }

@@ -30,9 +30,7 @@ const emptyFields: Fields = {
 export const IngredientForm: Component = (props: IngredientFormProps) => {
     const initialFields = props.ingredient || emptyFields
 
-    const [ error, setError ] = createSignal<ValidationError | null>(null)
-
-    const { setField, onSubmit } = useForm<Fields>({ ...initialFields }, ingredientSchema, props.onSubmit, setError)
+    const { setField, onSubmit, validationError } = useForm<Fields>({ ...initialFields }, ingredientSchema, props.onSubmit, setError)
 
     return (
         <form
@@ -66,6 +64,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
                 initialValue={initialFields.cost}
                 onChange={setField('cost')}
                 required
+                step=".01"
             />
             <div class="mb-4">
                 <input
@@ -80,7 +79,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
                     Cancel
                 </button>
             </div>
-            <Show when={error()}>
+            <Show when={validationError()}>
                 {(error) => <p class="text-red-600 font-bold">{error.errors.join('. ')}</p>}
             </Show>
         </form>

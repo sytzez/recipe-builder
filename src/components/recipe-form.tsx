@@ -34,7 +34,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
         console.log(error)
     }
 
-    const { fields, setField, setFields, onSubmit } = useForm<Fields>({ ...initialFields }, recipeSchema, props.onSubmit, onError)
+    const { fields, setField, setFields, onSubmit, validationError } = useForm<Fields>({ ...initialFields }, recipeSchema, props.onSubmit, onError)
     const [editingStepIndex, setEditingStepIndex] = createSignal<number | null>(null)
     const [isCreatingStep, setCreatingStep] = createSignal(false)
 
@@ -100,6 +100,9 @@ export const RecipeForm = (props: RecipeFormProps) => {
             >
                 Cancel
             </button>
+            <Show when={validationError()}>
+                {(error) => <p class="text-red-600 font-bold">{error.errors.join('. ')}</p>}
+            </Show>
         </form>
     )
 }
