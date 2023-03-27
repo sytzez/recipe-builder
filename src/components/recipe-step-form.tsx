@@ -40,7 +40,7 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
         onChange={setFieldUsingEvent('type')}
         options={[
           {label: 'Action', value: 'action'},
-          {label: 'Add ingredients', value: 'add-ingredients'}
+          {label: 'Add ingredient', value: 'add-ingredient'}
         ]}
       />
       <Show when={fields.type === 'action'}>
@@ -54,8 +54,8 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
           required
         />
       </Show>
-      <Show when={fields.type === 'add-ingredients'}>
-        <p>TODO</p>
+      <Show when={fields.type === 'add-ingredient'}>
+        
       </Show>
       <div class="mb-4">
         <SubmitButton label={props.submitLabel} />

@@ -18,8 +18,9 @@ if (import.meta.vitest) {
       description: 'Step 1',
     },
     {
-      type: 'add-ingredients',
-      quantities: [], // TODO: ingredient quantities
+      type: 'add-ingredient',
+      ingredientId: 0,
+      quantity: 0.5,
     },
   ]
 

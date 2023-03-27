@@ -18,7 +18,7 @@ if (import.meta.vitest) {
 
   it('is invalid with the wrong type', () => {
     expect(() =>
-      actionStepSchema.validateSync({ ...fields, type: 'add-ingredients' }),
+      actionStepSchema.validateSync({ ...fields, type: 'add-ingredient' }),
     ).toThrow()
   })
 
