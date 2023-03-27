@@ -12,21 +12,10 @@ const App: Component = () => {
   return (
     <>
       <nav class="bg-white shadow">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="flex h-16 justify-between">
-            <div class="flex flex-shrink-0 items-center">
-              <a href="/" class="text-2xl font-bold text-gray-800">
-                Recipe Builder
-              </a>
-            </div>
-            <div class="hidden md:block">
-              <div class="ml-10 flex items-center space-x-4">
-                <A href="/" class="text-gray-800 hover:text-gray-900">
-                  Home
-                </A>
-              </div>
-            </div>
-          </div>
+        <div class="mx-auto max-w-7xl px-8 h-16 flex items-center">
+          <a href="/" class="text-2xl font-bold text-gray-800">
+            Recipe Builder
+          </a>
         </div>
       </nav>
       <main class="mx-auto max-w-7xl">
