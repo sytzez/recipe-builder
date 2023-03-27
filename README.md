@@ -52,3 +52,9 @@ This was useful for testing the Yup schemata.
 ## Solid router
 
 SolidJS's way to add routes to an app.
+
+## SolidJS indexArray
+
+Used to reactively map an array. I've used this for example to map the array of ingredients from the app store to select boxes where you can select an ingredient.
+
+If an ingredient changes name, or a new ingredient is added, it is automatically updated in the options prop of such a Select component.

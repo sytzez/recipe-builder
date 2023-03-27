@@ -2,12 +2,13 @@ import { useForm } from '../utilities/use-form'
 import { ActionStep } from '../schemata/action-step'
 import { recipeStepSchema } from "../schemata/recipe-step";
 import { TextInput } from './form/text-input'
-import { createSignal, Show } from "solid-js";
+import { createEffect, createSignal, indexArray, mapArray, Show } from "solid-js";
 import { SubmitButton } from './form/submit-button'
 import { CancelButton } from './form/cancel-button'
 import { ValidationError } from 'yup'
 import { ValidationErrors } from './form/validation-errors'
 import { Select } from "./form/select";
+import { useApp } from "../stores/app-context";
 
 export interface RecipeStepFormProps {
   recipeStep: ActionStep | null
@@ -23,6 +24,8 @@ const emptyFields = {
 }
 
 export const RecipeStepForm = (props: RecipeStepFormProps) => {
+  const [app] = useApp()
+
   const initialFields = props.recipeStep || emptyFields
 
   const { setFieldUsingEvent, onSubmit, validationError, fields } = useForm(
@@ -30,6 +33,15 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
     recipeStepSchema,
     props.onSubmit,
   )
+
+  const ingredientOptions = indexArray(() => app.ingredients, (ingredient, id) => (
+    {
+      get label() {
+        return `${ingredient().name} (${ingredient().unitType})`
+      },
+      value: id,
+    }
+  ))
 
   return (
     <form onSubmit={onSubmit} class="mb-4 rounded bg-white p-8 shadow-md">
@@ -55,7 +67,12 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
         />
       </Show>
       <Show when={fields.type === 'add-ingredient'}>
-        
+        <Select
+          label="Ingredient"
+          initialValue={null}
+          onChange={setFieldUsingEvent('ingredientId')}
+          options={ingredientOptions()}
+        ></Select>
       </Show>
       <div class="mb-4">
         <SubmitButton label={props.submitLabel} />
