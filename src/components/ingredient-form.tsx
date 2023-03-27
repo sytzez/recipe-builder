@@ -33,7 +33,7 @@ const emptyFields: Fields = {
 export const IngredientForm: Component = (props: IngredientFormProps) => {
   const initialFields = props.ingredient || emptyFields
 
-  const { setField, onSubmit, validationError } = useForm<Fields>(
+  const { setFieldUsingEvent, onSubmit, validationError } = useForm<Fields>(
     { ...initialFields },
     ingredientSchema,
     props.onSubmit,
@@ -48,7 +48,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         type="text"
         placeholder="Honey"
         initialValue={initialFields.name}
-        onChange={setField('name')}
+        onChange={setFieldUsingEvent('name')}
         required
       />
       <TextInput
@@ -57,7 +57,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         type="text"
         placeholder="Teaspoon"
         initialValue={initialFields.unitType}
-        onChange={setField('unitType')}
+        onChange={setFieldUsingEvent('unitType')}
         required
       />
       <TextInput
@@ -66,7 +66,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         type="number"
         placeholder="0.05"
         initialValue={initialFields.cost}
-        onChange={setField('cost')}
+        onChange={setFieldUsingEvent('cost')}
         required
         step=".01"
       />

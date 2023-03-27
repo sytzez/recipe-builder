@@ -34,7 +34,7 @@ const emptyFields = {
 export const RecipeForm = (props: RecipeFormProps) => {
   const initialFields = props.recipe || emptyFields
 
-  const { fields, setField, setFields, onSubmit, validationError } =
+  const { fields, setFieldUsingEvent, setFields, onSubmit, validationError } =
     useForm<Fields>({ ...initialFields }, recipeSchema, props.onSubmit)
   const [editingStepIndex, setEditingStepIndex] = createSignal<number | null>(
     null,
@@ -60,7 +60,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
         type="text"
         placeholder="Chicken Curry"
         initialValue={initialFields.title}
-        onChange={setField('title')}
+        onChange={setFieldUsingEvent('title')}
         required
       />
       <TextInput
@@ -69,7 +69,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
         type="text"
         placeholder="A delicious curry"
         initialValue={initialFields.description}
-        onChange={setField('description')}
+        onChange={setFieldUsingEvent('description')}
       />
       <label class="mb-2 block font-bold text-gray-700">Steps</label>
       <div class="bg-width mb-4 rounded p-8 shadow-md">
@@ -96,6 +96,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
               </Show>
               <Show when={editingStepIndex() === index}>
                 <RecipeStepForm
+                  title="Edit step"
                   recipeStep={step()}
                   submitLabel="Update step"
                   onSubmit={updateStepAndStopUpdating(index)}
@@ -108,14 +109,15 @@ export const RecipeForm = (props: RecipeFormProps) => {
         <Show
           when={isCreatingStep()}
           fallback={
-            <Button label="Add step" onClick={() => setCreatingStep(true)} />
+            <Button label="Add a step" onClick={() => setCreatingStep(true)} />
           }
         >
           <RecipeStepForm
+            title="New step"
             recipeStep={null}
             onSubmit={createStepAndStopCreating}
             onCancel={() => setCreatingStep(false)}
-            submitLabel="Add a step"
+            submitLabel="Add step"
           />
         </Show>
       </div>

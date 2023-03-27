@@ -14,7 +14,7 @@ export const useForm = <Fields extends object>(
   return {
     fields,
     setFields,
-    setField: (fieldName: keyof Fields) => (event: Event) => {
+    setFieldUsingEvent: (fieldName: keyof Fields) => (event: Event) => {
       const inputElement = event.currentTarget as HTMLInputElement
 
       // @ts-ignore This should work because fieldName is a key of Fields

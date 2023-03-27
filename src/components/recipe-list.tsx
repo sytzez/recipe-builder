@@ -61,11 +61,11 @@ export const RecipeList = () => {
                 <p>{recipe().description}</p>
                 <Show when={editingRecipeId() === null}>
                   <Button
-                    label={'View recipe'}
+                    label="View recipe"
                     onClick={() => navigate(`/recipes/${id}`)}
                   />
                   <Button
-                    label={'Edit recipe'}
+                    label="Edit recipe"
                     onClick={() => setEditingRecipeId(id)}
                   />
                 </Show>
