@@ -1,7 +1,7 @@
 export const SubmitButton = (props) => (
-    <input
-        type="submit"
-        value={props.label}
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline cursor-pointer"
-    />
+  <input
+    type="submit"
+    value={props.label}
+    class="focus:shadow-outline mr-2 cursor-pointer rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"
+  />
 )

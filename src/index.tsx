@@ -1,17 +1,20 @@
 /* @refresh reload */
 import './index.css'
 import { render } from 'solid-js/web'
-import { Router } from "@solidjs/router";
+import { Router } from '@solidjs/router'
 
 import App from './App'
-import { AppProvider } from "./stores/app-context";
+import { AppProvider } from './stores/app-context'
 
 const root = document.getElementById('root')!
 
-render(() => (
+render(
+  () => (
     <Router>
-        <AppProvider>
-            <App/>
-        </AppProvider>
+      <AppProvider>
+        <App />
+      </AppProvider>
     </Router>
-), root)
+  ),
+  root,
+)

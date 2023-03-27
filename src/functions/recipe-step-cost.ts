@@ -1,16 +1,16 @@
 import { RecipeStep } from '../schemata/recipe-step'
 import { Cost, NoCost } from '../types/cost'
-import { ingredientQuantityCost } from "./ingredient-quantity-cost";
-import { sumOfCosts } from "./sumOfCosts";
+import { ingredientQuantityCost } from './ingredient-quantity-cost'
+import { sumOfCosts } from './sumOfCosts'
 
 export const recipeStepCost = (recipeStep: RecipeStep): Cost => {
-    switch (recipeStep.type) {
-        case 'action':
-            return NoCost
+  switch (recipeStep.type) {
+    case 'action':
+      return NoCost
 
-        case 'add-ingredients':
-            return recipeStep.quantities
-                .map(ingredientQuantityCost)
-                .reduce(sumOfCosts)
-    }
+    case 'add-ingredients':
+      return recipeStep.quantities
+        .map(ingredientQuantityCost)
+        .reduce(sumOfCosts)
+  }
 }

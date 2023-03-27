@@ -23,7 +23,7 @@ These are the methods that I learned about while doing this project.
 
 ### Reactivity
 
-SolidJS signals and stores update the DOM reactively, without needing to re-render components. 
+SolidJS signals and stores update the DOM reactively, without needing to re-render components.
 This is what makes SolidJS outperform most other front-end frameworks.
 
 ### Contexts/providers

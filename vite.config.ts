@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
+import { defineConfig } from 'vite'
+import solidPlugin from 'vite-plugin-solid'
 
 export default defineConfig({
   plugins: [solidPlugin()],
@@ -10,6 +10,6 @@ export default defineConfig({
     target: 'esnext',
   },
   test: {
-    includeSource: ['src/**/*.{ts,tsx}']
-  }
-});
+    includeSource: ['src/**/*.{ts,tsx}'],
+  },
+})
