@@ -6,6 +6,9 @@ import { useForm } from "../utilities/use-form";
 import { TextInput } from "./form/text-input";
 import { ingredientSchema } from "../schemata/ingredient";
 import { ValidationError } from "yup";
+import { SubmitButton } from "./form/submit-button";
+import { CancelButton } from "./form/cancel-button";
+import { ValidationErrors } from "./form/validation-errors";
 
 export interface IngredientFormProps {
     ingredient: Ingredient | null
@@ -30,7 +33,7 @@ const emptyFields: Fields = {
 export const IngredientForm: Component = (props: IngredientFormProps) => {
     const initialFields = props.ingredient || emptyFields
 
-    const { setField, onSubmit, validationError } = useForm<Fields>({ ...initialFields }, ingredientSchema, props.onSubmit, setError)
+    const { setField, onSubmit, validationError } = useForm<Fields>({ ...initialFields }, ingredientSchema, props.onSubmit)
 
     return (
         <form
@@ -67,21 +70,10 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
                 step=".01"
             />
             <div class="mb-4">
-                <input
-                    type="submit"
-                    value={props.submitLabel}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
-                />
-                <button
-                    onClick={props.onCancel}
-                    className="bg-gray-100 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                    Cancel
-                </button>
+                <SubmitButton label={props.submitLabel} />
+                <CancelButton onClick={props.onCancel} />
             </div>
-            <Show when={validationError()}>
-                {(error) => <p class="text-red-600 font-bold">{error.errors.join('. ')}</p>}
-            </Show>
+            <ValidationErrors error={validationError()} />
         </form>
     )
 }

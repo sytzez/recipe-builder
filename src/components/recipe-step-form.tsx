@@ -3,6 +3,10 @@ import { ActionStep } from "../schemata/action-step";
 import { recipeStepSchema } from "../schemata/recipe-step";
 import { TextInput } from "./form/text-input";
 import { Show } from "solid-js";
+import { SubmitButton } from "./form/submit-button";
+import { CancelButton } from "./form/cancel-button";
+import { ValidationError } from "yup";
+import { ValidationErrors } from "./form/validation-errors";
 
 export interface RecipeStepFormProps {
     recipeStep: ActionStep | null,
@@ -19,11 +23,7 @@ const emptyFields = {
 export const RecipeStepForm = (props: RecipeStepFormProps) => {
     const initialFields = props.recipeStep || emptyFields
 
-    const onError = (error) => {
-        console.log(error)
-    }
-
-    const { setField, onSubmit, validationError } = useForm({ ...initialFields }, recipeStepSchema, props.onSubmit, onError)
+    const { setField, onSubmit, validationError } = useForm({ ...initialFields }, recipeStepSchema, props.onSubmit)
     
     return (
         <form
@@ -37,21 +37,13 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
                 placeholder="Next, we do ..."
                 initialValue={initialFields.description}
                 onChange={setField('description')}
+                required
             />
-            <input
-                type="submit"
-                value={props.submitLabel}
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
-            />
-            <button
-                onClick={props.onCancel}
-                class="bg-gray-100 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-                Cancel
-            </button>
-            <Show when={validationError()}>
-                {(error) => <p class="text-red-600 font-bold">{error.errors.join('. ')}</p>}
-            </Show>
+            <div class="mb-4">
+                <SubmitButton label={props.submitLabel}/>
+                <CancelButton onClick={props.onCancel}/>
+            </div>
+            <ValidationErrors error={validationError()}/>
         </form>
     )
 }

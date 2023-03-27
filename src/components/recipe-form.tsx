@@ -5,6 +5,10 @@ import { recipeSchema } from "../schemata/recipe";
 import { createSignal, Index, Show } from "solid-js";
 import { Button } from "./elements/button";
 import { RecipeStepForm } from "./recipe-step-form";
+import { SubmitButton } from "./form/submit-button";
+import { CancelButton } from "./form/cancel-button";
+import { ValidationError } from "yup";
+import { ValidationErrors } from "./form/validation-errors";
 // import { RecipeStep } from "../schemata/recipe-step";
 
 export interface RecipeFormProps {
@@ -30,11 +34,7 @@ const emptyFields = {
 export const RecipeForm = (props: RecipeFormProps) => {
     const initialFields = props.recipe || emptyFields
 
-    const onError = (error) => {
-        console.log(error)
-    }
-
-    const { fields, setField, setFields, onSubmit, validationError } = useForm<Fields>({ ...initialFields }, recipeSchema, props.onSubmit, onError)
+    const { fields, setField, setFields, onSubmit, validationError } = useForm<Fields>({ ...initialFields }, recipeSchema, props.onSubmit)
     const [editingStepIndex, setEditingStepIndex] = createSignal<number | null>(null)
     const [isCreatingStep, setCreatingStep] = createSignal(false)
 
@@ -56,6 +56,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
                 placeholder="Chicken Curry"
                 initialValue={initialFields.title}
                 onChange={setField('title')}
+                required
             />
             <TextInput
                 name="description"
@@ -89,20 +90,11 @@ export const RecipeForm = (props: RecipeFormProps) => {
                     />
                 </Show>
             </div>
-            <input
-                type="submit"
-                value={props.submitLabel}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
-            />
-            <button
-                onClick={props.onCancel}
-                className="bg-gray-100 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-                Cancel
-            </button>
-            <Show when={validationError()}>
-                {(error) => <p class="text-red-600 font-bold">{error.errors.join('. ')}</p>}
-            </Show>
+            <div class="mb-4">
+                <SubmitButton label={props.submitLabel}/>
+                <CancelButton onClick={props.onCancel}/>
+            </div>
+            <ValidationErrors error={validationError()}/>
         </form>
     )
 }
