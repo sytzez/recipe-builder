@@ -43,6 +43,11 @@ export const RecipeForm = (props: RecipeFormProps) => {
         setCreatingStep(false)
     }
 
+    const updateStepAndStopUpdating = (index: number) => (step: RecipeStep) => {
+        setFields('steps', index, step)
+        setEditingStepIndex(null)
+    }
+
     return (
         <form
             onSubmit={onSubmit}
@@ -74,7 +79,22 @@ export const RecipeForm = (props: RecipeFormProps) => {
                 >
                     {(step, index) => (
                         <>
-                            <p>{step().description}</p>
+                            <Show when={editingStepIndex() !== index}>
+                                <div class="flex justify-between items-baseline">
+                                    <p class="text-gray-800 truncate mr-2">{step().description}</p>
+                                    <Show when={editingStepIndex() === null}>
+                                        <Button label="Edit step" onClick={() => setEditingStepIndex(index)}/>
+                                    </Show>
+                                </div>
+                            </Show>
+                            <Show when={editingStepIndex() === index}>
+                                <RecipeStepForm
+                                    recipeStep={step()}
+                                    submitLabel="Update step"
+                                    onSubmit={updateStepAndStopUpdating(index)}
+                                    onCancel={() => setEditingStepIndex(null)}
+                                />
+                            </Show>
                         </>
                     )}
                 </Index>
@@ -86,7 +106,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
                         recipeStep={null}
                         onSubmit={createStepAndStopCreating}
                         onCancel={() => setCreatingStep(false)}
-                        submitLabel="Add step"
+                        submitLabel="Add a step"
                     />
                 </Show>
             </div>
