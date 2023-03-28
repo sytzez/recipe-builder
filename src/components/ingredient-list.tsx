@@ -56,10 +56,14 @@ export const IngredientList = () => {
                 />
               </Show>
               <Show when={editingIngredientId() !== id}>
-                <div class="flex items-center justify-between mb-2">
+                <div class="mb-2 flex items-center justify-between">
                   <div>
-                    <h3 class="text-lg font-bold text-gray-800 truncate">{ingredient().name}</h3>
-                    <p class="text-gray-800 truncate">{ingredient().cost} per {ingredient().unitType}</p>
+                    <h3 class="truncate text-lg font-bold text-gray-800">
+                      {ingredient().name}
+                    </h3>
+                    <p class="truncate text-gray-800">
+                      {ingredient().cost} per {ingredient().unitType}
+                    </p>
                   </div>
                   <Show when={editingIngredientId() === null}>
                     <Button

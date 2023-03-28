@@ -4,7 +4,7 @@ import { Recipe } from '../schemata/recipe'
 import { Button } from './elements/button'
 import { RecipeForm } from './recipe-form'
 import { useNavigate } from '@solidjs/router'
-import { recipeCost } from "../functions/recipe-cost";
+import { recipeCost } from '../functions/recipe-cost'
 
 export const RecipeList = () => {
   const [app, actions] = useApp()
@@ -58,12 +58,12 @@ export const RecipeList = () => {
                 />
               </Show>
               <Show when={editingRecipeId() !== id}>
-                <div class="flex items-center justify-between mb-2">
+                <div class="mb-2 flex items-center justify-between">
                   <div>
-                    <h3 class="text-lg font-bold text-gray-800 truncate">
+                    <h3 class="truncate text-lg font-bold text-gray-800">
                       {recipe().title} (cost: {recipeCost(recipe(), app)})
                     </h3>
-                    <p class="text-gray-800 truncate">{recipe().description}</p>
+                    <p class="truncate text-gray-800">{recipe().description}</p>
                   </div>
                   <Show when={editingRecipeId() === null}>
                     <div class="flex gap-2">

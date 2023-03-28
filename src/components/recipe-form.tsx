@@ -9,9 +9,9 @@ import { SubmitButton } from './form/submit-button'
 import { CancelButton } from './form/cancel-button'
 import { ValidationError } from 'yup'
 import { ValidationErrors } from './form/validation-errors'
-import { useApp } from "../stores/app-context";
-import { stepDescription } from "../functions/step-description";
-import { recipeCost } from "../functions/recipe-cost";
+import { useApp } from '../stores/app-context'
+import { stepDescription } from '../functions/step-description'
+import { recipeCost } from '../functions/recipe-cost'
 // import { RecipeStep } from "../schemata/recipe-step";
 
 export interface RecipeFormProps {
@@ -87,7 +87,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
           {(step, index) => (
             <>
               <Show when={editingStepIndex() !== index}>
-                <div class="flex items-baseline justify-between mb-2">
+                <div class="mb-2 flex items-baseline justify-between">
                   <p class="mr-2 truncate text-gray-800">
                     {stepDescription(step(), app)}
                   </p>
@@ -127,7 +127,9 @@ export const RecipeForm = (props: RecipeFormProps) => {
         </Show>
       </div>
       <label class="mb-2 block font-bold text-gray-700">Total cost</label>
-      <p class="mb-4 block font-bold text-lg text-gray-700">{recipeCost(fields, app)}</p>
+      <p class="mb-4 block text-lg font-bold text-gray-700">
+        {recipeCost(fields, app)}
+      </p>
       <div class="mb-4">
         <SubmitButton label={props.submitLabel} />
         <CancelButton onClick={props.onCancel} />
