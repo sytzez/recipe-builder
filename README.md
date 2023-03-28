@@ -21,6 +21,15 @@ npm run dev
 
 The app should become accessible at `htttp://localhost:3000/recipe-builder`.
 
+## Quick overview of the project
+
+- [/src/actions](/src/actions) - Here are all the actions that can modify the app state. No other code can modify the app state.
+- [/src/components](/src/components) - The SolidJS UI components.
+- [/src/functions](/src/functions) - Here are some functions that process data from the app state. For example to calculate the cost of something, or to list the ingredients used in a recipe.
+- [/src/pages](/src/pages) - The pages available on the app.
+- [/src/schemata](/src/schemata) - The Yup schemata used to validate form input. They also form the basis of some of the types used in the app state.
+- [/src/stores](/src/stores) - Home of the appState store, which stores the entire state of the app. It also provides a context together with the actions from /src/actions.
+
 ## Methods used
 
 These are the methods that I learned about while doing this project.
