@@ -10,6 +10,7 @@ import { CancelButton } from './form/cancel-button'
 import { ValidationError } from 'yup'
 import { ValidationErrors } from './form/validation-errors'
 import { useApp } from "../stores/app-context";
+import { stepDescription } from "../functions/step-description";
 // import { RecipeStep } from "../schemata/recipe-step";
 
 export interface RecipeFormProps {
@@ -87,10 +88,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
               <Show when={editingStepIndex() !== index}>
                 <div class="flex items-baseline justify-between mb-2">
                   <p class="mr-2 truncate text-gray-800">
-                    {step().type === 'action'
-                      ? step().description
-                      : `${step().quantity} ${app.ingredients[step().ingredientId]?.unitType || '?'} of ${app.ingredients[step().ingredientId]?.name || '?'}`
-                    }
+                    {stepDescription(step(), app)}
                   </p>
                   <Show when={editingStepIndex() === null}>
                     <Button
