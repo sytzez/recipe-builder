@@ -9,6 +9,7 @@ import { SubmitButton } from './form/submit-button'
 import { CancelButton } from './form/cancel-button'
 import { ValidationError } from 'yup'
 import { ValidationErrors } from './form/validation-errors'
+import { useApp } from "../stores/app-context";
 // import { RecipeStep } from "../schemata/recipe-step";
 
 export interface RecipeFormProps {
@@ -32,6 +33,8 @@ const emptyFields = {
 }
 
 export const RecipeForm = (props: RecipeFormProps) => {
+  const [app] = useApp()
+
   const initialFields = props.recipe || emptyFields
 
   const { fields, setFieldUsingEvent, setFields, onSubmit, validationError } =
@@ -82,9 +85,12 @@ export const RecipeForm = (props: RecipeFormProps) => {
           {(step, index) => (
             <>
               <Show when={editingStepIndex() !== index}>
-                <div class="flex items-baseline justify-between">
+                <div class="flex items-baseline justify-between mb-2">
                   <p class="mr-2 truncate text-gray-800">
-                    {step().description}
+                    {step().type === 'action'
+                      ? step().description
+                      : `${step().quantity} ${app.ingredients[step().ingredientId]?.unitType || '?'} of ${app.ingredients[step().ingredientId]?.name || '?'}`
+                    }
                   </p>
                   <Show when={editingStepIndex() === null}>
                     <Button
