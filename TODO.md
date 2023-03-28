@@ -1,6 +1,5 @@
 - ESlint
 - Remove unused dependencies
-- Test functions
 - Test all components
 - View page for recipe
 - Restructure code

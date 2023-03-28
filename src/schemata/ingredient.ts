@@ -46,6 +46,12 @@ if (import.meta.vitest) {
     ).toThrow()
   })
 
+  it('is invalid with a negative cost', () => {
+    expect(() =>
+      ingredientSchema.validateSync({ ...fields, cost: '-1' }),
+    ).toThrow()
+  })
+
   it('is valid with a cost of 0', () => {
     expect(ingredientSchema.validateSync({ ...fields, cost: 0 })).toEqual({
       name: 'Honey',
