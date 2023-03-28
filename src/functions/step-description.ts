@@ -13,6 +13,6 @@ export const stepDescription = (step: RecipeStep, app: AppState) => {
   if (! ingredient) {
     return 'Unknown ingredient'
   }
-  
+
   return `Add ${step.quantity} ${ingredient.unitType} of ${ingredient.name}`
 }
