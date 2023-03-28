@@ -1,7 +1,6 @@
-// import { Recipe } from "../types/recipe";
 import { useForm } from '../utilities/use-form'
 import { TextInput } from './form/text-input'
-import { recipeSchema } from '../schemata/recipe'
+import { Recipe, recipeSchema } from "../schemata/recipe";
 import { createSignal, Index, Show } from 'solid-js'
 import { Button } from './elements/button'
 import { RecipeStepForm } from './recipe-step-form'
@@ -13,13 +12,13 @@ import { useApp } from '../stores/app-context'
 import { stepDescription } from '../functions/step-description'
 import { recipeCost } from '../functions/recipe-cost'
 import { formatCost } from '../functions/format-cost'
-// import { RecipeStep } from "../schemata/recipe-step";
+import { RecipeStep } from "../schemata/recipe-step";
 
 export interface RecipeFormProps {
   recipe: Recipe | null
   title: string
   submitLabel: string
-  onSubmit: (Recipe) => void
+  onSubmit: (recipe: Recipe) => void
   onCancel: () => void
 }
 
