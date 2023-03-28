@@ -4,3 +4,5 @@
 - Test all components
 - View page for recipe
 - Restructure code
+- Pluralise units properly
+- Add a proper select box for units

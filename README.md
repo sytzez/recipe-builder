@@ -47,7 +47,7 @@ While I have written pure Javascript schema validation utilities in the past, Yu
 ### In-source testing
 
 Unit testing in-source using Vitest, meaning the tests are in the same file as the actual code.
-This was useful for testing the Yup schemata.
+This was useful for testing the Yup schemata as well as some functions.
 
 ## Solid router
 

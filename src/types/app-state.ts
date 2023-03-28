@@ -2,11 +2,11 @@ import { Ingredient } from '../schemata/ingredient'
 import { Recipe } from '../schemata/recipe'
 
 export interface AppState {
-  ingredients: Ingredient[]
-  recipes: Recipe[]
+  ingredients: readonly Ingredient[]
+  recipes: readonly Recipe[]
 }
 
-export const initialAppState = {
+export const initialAppState: AppState = {
   ingredients: [],
   recipes: [],
 }
