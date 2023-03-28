@@ -22,7 +22,7 @@ export const ShowRecipe = () => {
   return (
     <div class="mx-auto mt-8 max-w-4xl rounded bg-white p-8 shadow-lg">
       <div class="mb-4">
-        <Button label="Back" onClick={() => navigate('/')} />
+        <Button label="Back" onClick={() => navigate('/recipe-builder')} />
       </div>
       <Show
         when={recipe()}

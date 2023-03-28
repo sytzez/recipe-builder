@@ -8,7 +8,7 @@ const App: Component = () => {
     <>
       <nav class="bg-white shadow">
         <div class="mx-auto flex h-16 max-w-7xl items-center px-8">
-          <a href="/" class="text-2xl font-bold text-gray-800">
+          <a href="/recipe-builder" class="text-2xl font-bold text-gray-800">
             Recipe Builder
           </a>
         </div>
