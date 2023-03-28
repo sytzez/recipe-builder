@@ -7,3 +7,4 @@
 - Pluralise units properly
 - Add a proper select box for units
 - At the top of a recipe, show all ingredients needed.
+- Ability to multiple recipe for more people.

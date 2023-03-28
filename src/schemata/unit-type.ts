@@ -3,12 +3,13 @@ import { string } from 'yup'
 export const unitTypes: readonly UnitType[] = [
   'units',
   'grams',
+  'ml',
   'spoons',
 ]
 
 export const unitTypeSchema = string<UnitType>().oneOf(unitTypes)
 
-export type UnitType = 'units' | 'grams' | 'spoons'
+export type UnitType = 'units' | 'grams' | 'ml' | 'spoons'
 
 if (import.meta.vitest) {
   const { it, expect } = import.meta.vitest
@@ -19,6 +20,10 @@ if (import.meta.vitest) {
 
   it('can be grams', () => {
     expect(unitTypeSchema.validateSync('grams')).toBe('grams')
+  })
+
+  it('can be ml', () => {
+    expect(unitTypeSchema.validateSync('ml')).toBe('ml')
   })
 
   it('can be spoons', () => {
