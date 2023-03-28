@@ -37,7 +37,7 @@ export const ShowRecipe = () => {
             <h2 class="mb-2 text-xl font-bold text-gray-800">Ingredients</h2>
             <For
               each={recipeIngredients(recipe, app)}
-              fallback={<p class="italic text-gray-800">None.</p>}
+              fallback={<p class="mb-2 italic text-gray-800">None.</p>}
             >
               {(ingredientQuantity) => (
                 <p class="mb-2 text-gray-800">

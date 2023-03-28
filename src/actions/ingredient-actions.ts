@@ -1,5 +1,5 @@
 import { SetStoreFunction, Store } from 'solid-js/store'
-import { AppState } from '../types/app-state'
+import { AppState } from './app-state'
 import { Ingredient } from '../schemata/ingredient'
 
 export type IngredientActions = ReturnType<typeof createIngredientActions>

@@ -1,7 +1,7 @@
 import { Recipe } from '../schemata/recipe'
 import { AddIngredientStep } from '../schemata/add-ingredient-step'
 import { Ingredient } from '../schemata/ingredient'
-import { AppState, initialAppState } from '../types/app-state'
+import { AppState, initialAppState } from '../stores/app'
 
 export interface IngredientQuantity {
   ingredient: Ingredient

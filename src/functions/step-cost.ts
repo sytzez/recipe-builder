@@ -1,6 +1,6 @@
 import { RecipeStep } from '../schemata/recipe-step'
-import { AppState, initialAppState } from '../types/app-state'
 import { noCost, unknownCost } from '../types/cost'
+import { AppState, initialAppState } from '../stores/app'
 
 export const stepCost = (step: RecipeStep, app: AppState) => {
   if (step.type === 'action') {

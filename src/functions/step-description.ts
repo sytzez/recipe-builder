@@ -1,7 +1,5 @@
 import { RecipeStep } from '../schemata/recipe-step'
-import { AppState, initialAppState } from '../types/app-state'
-import { ActionStep } from '../schemata/action-step'
-import { AddIngredientStep } from '../schemata/add-ingredient-step'
+import { AppState, initialAppState } from '../stores/app'
 
 export const stepDescription = (step: RecipeStep, app: AppState) => {
   if (step.type === 'action') {

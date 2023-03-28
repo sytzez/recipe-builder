@@ -74,7 +74,9 @@ export const RecipeList = () => {
                     <div class="flex gap-2">
                       <Button
                         label="View"
-                        onClick={() => navigate(`/recipe-builder/recipes/${id}`)}
+                        onClick={() =>
+                          navigate(`/recipe-builder/recipes/${id}`)
+                        }
                       />
                       <Button
                         label="Edit"
