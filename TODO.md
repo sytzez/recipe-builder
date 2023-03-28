@@ -3,5 +3,4 @@
 - Test all components
 - Restructure code
 - Pluralise units properly
-- At the top of a recipe, show all ingredients needed.
 - Ability to multiple recipe for more people.
