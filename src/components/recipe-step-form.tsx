@@ -11,7 +11,7 @@ import { Select } from "./form/select";
 import { useApp } from "../stores/app-context";
 
 export interface RecipeStepFormProps {
-  recipeStep: ActionStep | null
+  recipeStep: RecipeStep | null
   title: string
   submitLabel: string
   onSubmit: (RecipeStep) => void
@@ -37,7 +37,7 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
   const ingredientOptions = indexArray(() => app.ingredients, (ingredient, id) => (
     {
       get label() {
-        return `${ingredient().name} (${ingredient().unitType})`
+        return ingredient().name
       },
       value: id,
     }
@@ -61,7 +61,7 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
           label="Step description"
           type="text"
           placeholder="Next, we do ..."
-          initialValue={initialFields.description}
+          initialValue={initialFields.type === 'action' ? initialFields.description : ''}
           onChange={setFieldUsingEvent('description')}
           required
         />
@@ -69,10 +69,20 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
       <Show when={fields.type === 'add-ingredient'}>
         <Select
           label="Ingredient"
-          initialValue={null}
+          initialValue={initialFields.type === 'add-ingredient' ? initialFields.ingredientId : null}
           onChange={setFieldUsingEvent('ingredientId')}
-          options={ingredientOptions()}
+          options={[{label: '', id: null} , ...ingredientOptions()]}
         ></Select>
+        <TextInput
+          name="quantity"
+          label={'Quantity' + (app.ingredients[fields.ingredientId] ? ` (${app.ingredients[fields.ingredientId]?.unitType})` : '')}
+          type="number"
+          placeholder="3"
+          initialValue={initialFields.type === 'add-ingredient' ? initialFields.quantity : ''}
+          onChange={setFieldUsingEvent('quantity')}
+          required
+          step=".01"
+        />
       </Show>
       <div class="mb-4">
         <SubmitButton label={props.submitLabel} />
