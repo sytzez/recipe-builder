@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { For } from 'solid-js'
 
 export const Select = (props) => {
   return (
@@ -14,7 +14,12 @@ export const Select = (props) => {
       >
         <For each={props.options}>
           {(option) => (
-            <option value={option.value} selected={props.initialValue == option.value}>{option.label}</option>
+            <option
+              value={option.value}
+              selected={props.initialValue == option.value}
+            >
+              {option.label}
+            </option>
           )}
         </For>
       </select>

@@ -1,4 +1,4 @@
-import { array, InferType, number, object, string } from "yup";
+import { array, InferType, number, object, string } from 'yup'
 
 export const addIngredientStepSchema = object({
   type: string().is(['add-ingredient']).required(),
@@ -38,13 +38,13 @@ if (import.meta.vitest) {
 
   it('is invalid with a negative quantity', () => {
     expect(() =>
-      addIngredientStepSchema.validateSync({ ...fields, quantity: -.5 })
+      addIngredientStepSchema.validateSync({ ...fields, quantity: -0.5 }),
     ).toThrow()
   })
 
   it('is invalid with a quantity of zero', () => {
     expect(() =>
-      addIngredientStepSchema.validateSync({ ...fields, quantity: 0 })
+      addIngredientStepSchema.validateSync({ ...fields, quantity: 0 }),
     ).toThrow()
   })
 }

@@ -12,7 +12,7 @@ const App: Component = () => {
   return (
     <>
       <nav class="bg-white shadow">
-        <div class="mx-auto max-w-7xl px-8 h-16 flex items-center">
+        <div class="mx-auto flex h-16 max-w-7xl items-center px-8">
           <a href="/" class="text-2xl font-bold text-gray-800">
             Recipe Builder
           </a>

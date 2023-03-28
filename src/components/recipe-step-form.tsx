@@ -1,14 +1,20 @@
 import { useForm } from '../utilities/use-form'
 import { ActionStep } from '../schemata/action-step'
-import { recipeStepSchema } from "../schemata/recipe-step";
+import { recipeStepSchema } from '../schemata/recipe-step'
 import { TextInput } from './form/text-input'
-import { createEffect, createSignal, indexArray, mapArray, Show } from "solid-js";
+import {
+  createEffect,
+  createSignal,
+  indexArray,
+  mapArray,
+  Show,
+} from 'solid-js'
 import { SubmitButton } from './form/submit-button'
 import { CancelButton } from './form/cancel-button'
 import { ValidationError } from 'yup'
 import { ValidationErrors } from './form/validation-errors'
-import { Select } from "./form/select";
-import { useApp } from "../stores/app-context";
+import { Select } from './form/select'
+import { useApp } from '../stores/app-context'
 
 export interface RecipeStepFormProps {
   recipeStep: RecipeStep | null
@@ -34,14 +40,15 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
     props.onSubmit,
   )
 
-  const ingredientOptions = indexArray(() => app.ingredients, (ingredient, id) => (
-    {
+  const ingredientOptions = indexArray(
+    () => app.ingredients,
+    (ingredient, id) => ({
       get label() {
         return ingredient().name
       },
       value: id,
-    }
-  ))
+    }),
+  )
 
   return (
     <form onSubmit={onSubmit} class="mb-4 rounded bg-white p-8 shadow-md">
@@ -51,8 +58,8 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
         initialValue={initialFields.type}
         onChange={setFieldUsingEvent('type')}
         options={[
-          {label: 'Action', value: 'action'},
-          {label: 'Add ingredient', value: 'add-ingredient'}
+          { label: 'Action', value: 'action' },
+          { label: 'Add ingredient', value: 'add-ingredient' },
         ]}
       />
       <Show when={fields.type === 'action'}>
@@ -61,7 +68,9 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
           label="Step description"
           type="text"
           placeholder="Next, we do ..."
-          initialValue={initialFields.type === 'action' ? initialFields.description : ''}
+          initialValue={
+            initialFields.type === 'action' ? initialFields.description : ''
+          }
           onChange={setFieldUsingEvent('description')}
           required
         />
@@ -69,16 +78,29 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
       <Show when={fields.type === 'add-ingredient'}>
         <Select
           label="Ingredient"
-          initialValue={initialFields.type === 'add-ingredient' ? initialFields.ingredientId : null}
+          initialValue={
+            initialFields.type === 'add-ingredient'
+              ? initialFields.ingredientId
+              : null
+          }
           onChange={setFieldUsingEvent('ingredientId')}
-          options={[{label: '', id: null} , ...ingredientOptions()]}
+          options={[{ label: '', id: null }, ...ingredientOptions()]}
         ></Select>
         <TextInput
           name="quantity"
-          label={'Quantity' + (app.ingredients[fields.ingredientId] ? ` (${app.ingredients[fields.ingredientId]?.unitType})` : '')}
+          label={
+            'Quantity' +
+            (app.ingredients[fields.ingredientId]
+              ? ` (${app.ingredients[fields.ingredientId]?.unitType})`
+              : '')
+          }
           type="number"
           placeholder="3"
-          initialValue={initialFields.type === 'add-ingredient' ? initialFields.quantity : ''}
+          initialValue={
+            initialFields.type === 'add-ingredient'
+              ? initialFields.quantity
+              : ''
+          }
           onChange={setFieldUsingEvent('quantity')}
           required
           step=".01"
