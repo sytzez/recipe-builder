@@ -2,6 +2,8 @@
 
 I started this project to learn SolidJS, TailwindCSS, Yup and Vitest. In the app you can create recipes from ingredients. It can then calculate the cost of the recipe.
 
+See the app live at https://sytzez.github.io/recipe-builder/.
+
 ## Getting Started
 
 After cloning the repository, install npm packages:
@@ -16,6 +18,8 @@ Then serve the app in development mode:
 ```bash
 npm run dev
 ```
+
+The app should become accessible at `htttp://localhost:3000/recipe-builder`.
 
 ## Methods used
 
@@ -44,16 +48,16 @@ I used Yup's `InferType` to create types from schemata, for example for ShowReci
 
 While I have written pure Javascript schema validation utilities in the past, Yup is a framework dedicated to making this easier and cleaner.
 
-### In-source testing
+#### In-source testing
 
 Unit testing in-source using Vitest, meaning the tests are in the same file as the actual code.
 This was useful for testing the Yup schemata as well as some functions.
 
-## Solid router
+### Solid router
 
 SolidJS's way to add routes to an app.
 
-## SolidJS indexArray
+### SolidJS indexArray
 
 Used to reactively map an array. I've used this for example to map the array of ingredients from the app store to select boxes where you can select an ingredient.
 
