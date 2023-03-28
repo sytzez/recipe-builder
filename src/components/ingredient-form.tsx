@@ -1,6 +1,6 @@
 import { Component, createSignal, Show } from 'solid-js'
 // import { Ingredient } from "../types/ingredient";
-import { UnitType, unitTypes } from "../schemata/unit-type";
+import { UnitType, unitTypes } from '../schemata/unit-type'
 import { Cost } from '../types/cost'
 import { useForm } from '../utilities/use-form'
 import { TextInput } from './form/text-input'
@@ -9,7 +9,7 @@ import { ValidationError } from 'yup'
 import { SubmitButton } from './form/submit-button'
 import { CancelButton } from './form/cancel-button'
 import { ValidationErrors } from './form/validation-errors'
-import { Select } from "./form/select";
+import { Select } from './form/select'
 
 export interface IngredientFormProps {
   ingredient: Ingredient | null
@@ -59,7 +59,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         label="Unit of measurement"
         initialValue={initialFields.unitType}
         onChange={setFieldUsingEvent('unitType')}
-        options={unitTypes.map((type) => ({label: type, value: type}))}
+        options={unitTypes.map((type) => ({ label: type, value: type }))}
       />
       <TextInput
         name="cost"

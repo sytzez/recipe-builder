@@ -3,7 +3,7 @@ import { IngredientForm } from './ingredient-form'
 import { Button } from './elements/button'
 import { useApp } from '../stores/app-context'
 import { Ingredient } from '../schemata/ingredient'
-import { formatCost } from "../functions/format-cost";
+import { formatCost } from '../functions/format-cost'
 
 export const IngredientList = () => {
   const [app, actions] = useApp()
@@ -63,7 +63,8 @@ export const IngredientList = () => {
                       {ingredient().name}
                     </h3>
                     <p class="truncate text-gray-800">
-                      {formatCost(ingredient().cost)} per {ingredient().unitType}
+                      {formatCost(ingredient().cost)} per{' '}
+                      {ingredient().unitType}
                     </p>
                   </div>
                   <Show when={editingIngredientId() === null}>

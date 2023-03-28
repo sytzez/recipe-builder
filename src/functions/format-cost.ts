@@ -1,4 +1,4 @@
-import { Cost, unknownCost } from "../types/cost";
+import { Cost, unknownCost } from '../types/cost'
 
 export const formatCost = (cost: Cost) => {
   if (cost === unknownCost) {
@@ -16,7 +16,7 @@ if (import.meta.vitest) {
   })
 
   it('formats the cost with two decimals', () => {
-    expect(formatCost(1/3)).toBe('£0.33')
+    expect(formatCost(1 / 3)).toBe('£0.33')
     expect(formatCost(2)).toBe('£2.00')
   })
 }

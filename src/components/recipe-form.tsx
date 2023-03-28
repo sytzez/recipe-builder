@@ -12,7 +12,7 @@ import { ValidationErrors } from './form/validation-errors'
 import { useApp } from '../stores/app-context'
 import { stepDescription } from '../functions/step-description'
 import { recipeCost } from '../functions/recipe-cost'
-import { formatCost } from "../functions/format-cost";
+import { formatCost } from '../functions/format-cost'
 // import { RecipeStep } from "../schemata/recipe-step";
 
 export interface RecipeFormProps {
