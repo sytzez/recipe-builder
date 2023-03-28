@@ -4,6 +4,7 @@ import { Recipe } from '../schemata/recipe'
 import { Button } from './elements/button'
 import { RecipeForm } from './recipe-form'
 import { useNavigate } from '@solidjs/router'
+import { recipeCost } from "../functions/recipe-cost";
 
 export const RecipeList = () => {
   const [app, actions] = useApp()
@@ -57,18 +58,24 @@ export const RecipeList = () => {
                 />
               </Show>
               <Show when={editingRecipeId() !== id}>
-                <h1>{recipe().title}</h1>
-                <p>{recipe().description}</p>
-                <Show when={editingRecipeId() === null}>
-                  <Button
-                    label="View recipe"
-                    onClick={() => navigate(`/recipes/${id}`)}
-                  />
-                  <Button
-                    label="Edit recipe"
-                    onClick={() => setEditingRecipeId(id)}
-                  />
-                </Show>
+                <div class="flex items-center justify-between mb-2">
+                  <div>
+                    <h3 class="text-lg font-bold text-gray-800 truncate">{recipe().title} (cost: {recipeCost(recipe(), app)})</h3>
+                    <p class="text-gray-800 truncate">{recipe().description}</p>
+                  </div>
+                  <Show when={editingRecipeId() === null}>
+                    <div class="flex gap-2">
+                      <Button
+                        label="View"
+                        onClick={() => navigate(`/recipes/${id}`)}
+                      />
+                      <Button
+                        label="Edit"
+                        onClick={() => setEditingRecipeId(id)}
+                      />
+                    </div>
+                  </Show>
+                </div>
               </Show>
             </>
           )}
