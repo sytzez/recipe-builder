@@ -45,7 +45,7 @@ export const RecipeList = () => {
         </Show>
         <Index
           each={app.recipes}
-          fallback={<p class="italic text-gray-700">No recipes yet.</p>}
+          fallback={<p class="italic text-gray-800">No recipes yet.</p>}
         >
           {(recipe, id) => (
             <>

@@ -18,7 +18,7 @@ export const ShowRecipe = () => {
 
   return (
     <div class="p-8 mx-auto mt-8 max-w-4xl rounded bg-white shadow-lg">
-      <Show when={recipe()} fallback={<p class="italic text-gray-700">Recipe not found.</p>}>
+      <Show when={recipe()} fallback={<p class="italic text-gray-800">Recipe not found.</p>}>
         {(recipe) => <>
           <h1 class="text-2xl font-bold text-gray-800 mb-4">
             {recipe.title}
@@ -29,7 +29,7 @@ export const ShowRecipe = () => {
           <p class="text-gray-800 font-bold">
             Total cost of ingredients
           </p>
-          <p class="mb-4 block text-lg font-bold text-gray-700">
+          <p class="mb-4 block text-lg font-bold text-gray-800">
             {formatCost(recipeCost(recipe, app))}
           </p>
           <h2 class="text-xl font-bold text-gray-800 mb-2">

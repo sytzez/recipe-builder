@@ -53,7 +53,7 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
   return (
     <form
       onSubmit={onSubmit}
-      class="mb-4 rounded border border-gray-100 bg-white p-8 shadow-md"
+      class="mb-4 rounded border border-gray-100 bg-white px-8 py-6 shadow-md"
     >
       <h1 class="mb-4 text-2xl font-bold text-gray-800">{props.title}</h1>
       <Select
@@ -109,7 +109,7 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
           step=".01"
         />
       </Show>
-      <div class="mb-4">
+      <div>
         <SubmitButton label={props.submitLabel} />
         <CancelButton onClick={props.onCancel} />
       </div>

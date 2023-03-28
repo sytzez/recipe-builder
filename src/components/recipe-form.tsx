@@ -60,7 +60,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
   return (
     <form
       onSubmit={onSubmit}
-      class="mb-4 rounded border border-gray-100 bg-white p-8 shadow-lg"
+      class="mb-4 rounded border border-gray-100 bg-white px-8 py-6 shadow-lg"
     >
       <h1 class="mb-4 text-2xl font-bold text-gray-800">{props.title}</h1>
       <TextInput
@@ -80,12 +80,12 @@ export const RecipeForm = (props: RecipeFormProps) => {
         initialValue={initialFields.description}
         onChange={setFieldUsingEvent('description')}
       />
-      <label class="mb-2 block font-bold text-gray-700">Steps</label>
-      <div class="bg-width mb-4 rounded p-8 shadow-md">
+      <label class="mb-2 block font-bold text-gray-800">Steps</label>
+      <div class="bg-width mb-4 rounded px-8 py-6 shadow-md">
         <Index
           each={fields.steps}
           fallback={
-            <p class="mb-4 italic text-gray-700">No recipe steps yet.</p>
+            <p class="mb-4 italic text-gray-800">No recipe steps yet.</p>
           }
         >
           {(step, index) => (
@@ -130,11 +130,11 @@ export const RecipeForm = (props: RecipeFormProps) => {
           />
         </Show>
       </div>
-      <label class="mb-2 block font-bold text-gray-700">Total cost</label>
-      <p class="mb-4 block text-lg font-bold text-gray-700">
+      <label class="mb-2 block font-bold text-gray-800">Total cost</label>
+      <p class="mb-4 block text-lg font-bold text-gray-800">
         {formatCost(recipeCost(fields, app))}
       </p>
-      <div class="mb-4">
+      <div>
         <SubmitButton label={props.submitLabel} />
         <CancelButton onClick={props.onCancel} />
       </div>
