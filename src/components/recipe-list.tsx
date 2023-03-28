@@ -62,9 +62,13 @@ export const RecipeList = () => {
                 <div class="mb-2 flex items-center justify-between">
                   <div>
                     <h3 class="truncate text-lg font-bold text-gray-800">
-                      {recipe().title} ({formatCost(recipeCost(recipe(), app))})
+                      {recipe().title}
                     </h3>
-                    <p class="truncate text-gray-800">{recipe().description}</p>
+                    <p class="truncate text-gray-800">
+                      {formatCost(recipeCost(recipe(), app))}
+                      {' • '}
+                      {recipe().description}
+                    </p>
                   </div>
                   <Show when={editingRecipeId() === null}>
                     <div class="flex gap-2">
