@@ -55,7 +55,7 @@ export const RecipeList = () => {
                   recipe={recipe()}
                   onSubmit={updateRecipeAndStopEditing(id)}
                   onCancel={() => setEditingRecipeId(null)}
-                  submitLabel="Update Recipe"
+                  submitLabel="Update ShowRecipe"
                 />
               </Show>
               <Show when={editingRecipeId() !== id}>

@@ -1,4 +1,4 @@
-# Recipe Builder
+# ShowRecipe Builder
 
 I started this project to learn SolidJS, TailwindCSS, Yup and Vitest. In the app you can create recipes from ingredients. It can then calculate the cost of the recipe.
 
@@ -38,7 +38,7 @@ In this project I stopped using as many typehints as I used to.
 I also made use of TypeScript's `ReturnType` to infer the return type of a function rather than defining the return type myself.
 This was very useful for automatically and correctly defining the type of the actions object.
 
-I used Yup's `InferType` to create types from schemata, for example for Recipe and Ingredient.
+I used Yup's `InferType` to create types from schemata, for example for ShowRecipe and Ingredient.
 
 ### Yup schema validation
 
