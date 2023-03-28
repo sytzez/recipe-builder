@@ -60,7 +60,9 @@ export const RecipeList = () => {
               <Show when={editingRecipeId() !== id}>
                 <div class="flex items-center justify-between mb-2">
                   <div>
-                    <h3 class="text-lg font-bold text-gray-800 truncate">{recipe().title} (cost: {recipeCost(recipe(), app)})</h3>
+                    <h3 class="text-lg font-bold text-gray-800 truncate">
+                      {recipe().title} (cost: {recipeCost(recipe(), app)})
+                    </h3>
                     <p class="text-gray-800 truncate">{recipe().description}</p>
                   </div>
                   <Show when={editingRecipeId() === null}>
