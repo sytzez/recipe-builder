@@ -15,8 +15,10 @@ const App: Component = () => {
       </nav>
       <main class="mx-auto max-w-7xl">
         <Routes>
-          <Route path="/" component={Home} />
-          <Route path="/recipes/:id" component={ShowRecipe} />
+          <Route path="/recipe-builder">
+            <Route path="/" component={Home} />
+            <Route path="/recipes/:id" component={ShowRecipe} />
+          </Route>
         </Routes>
       </main>
     </>
