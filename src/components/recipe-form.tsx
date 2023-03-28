@@ -12,6 +12,7 @@ import { ValidationErrors } from './form/validation-errors'
 import { useApp } from '../stores/app-context'
 import { stepDescription } from '../functions/step-description'
 import { recipeCost } from '../functions/recipe-cost'
+import { formatCost } from "../functions/format-cost";
 // import { RecipeStep } from "../schemata/recipe-step";
 
 export interface RecipeFormProps {
@@ -131,7 +132,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
       </div>
       <label class="mb-2 block font-bold text-gray-700">Total cost</label>
       <p class="mb-4 block text-lg font-bold text-gray-700">
-        {recipeCost(fields, app)}
+        {formatCost(recipeCost(fields, app))}
       </p>
       <div class="mb-4">
         <SubmitButton label={props.submitLabel} />

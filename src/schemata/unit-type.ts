@@ -1,10 +1,12 @@
 import { string } from 'yup'
 
-export const unitTypeSchema = string<UnitType>().oneOf([
+export const unitTypes: readonly UnitType[] = [
   'units',
-  'spoons',
   'grams',
-])
+  'spoons',
+]
+
+export const unitTypeSchema = string<UnitType>().oneOf(unitTypes)
 
 export type UnitType = 'units' | 'grams' | 'spoons'
 

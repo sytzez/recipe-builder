@@ -87,7 +87,7 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
               : null
           }
           onChange={setFieldUsingEvent('ingredientId')}
-          options={[{ label: '', id: null }, ...ingredientOptions()]}
+          options={[{ label: '', value: null }, ...ingredientOptions()]}
         ></Select>
         <TextInput
           name="quantity"

@@ -1,7 +1,9 @@
 - ESlint
+- Use local storage for state
 - Remove unused dependencies
 - Test all components
 - View page for recipe
 - Restructure code
 - Pluralise units properly
 - Add a proper select box for units
+- At the top of a recipe, show all ingredients needed.

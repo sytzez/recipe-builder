@@ -5,6 +5,7 @@ import { Button } from './elements/button'
 import { RecipeForm } from './recipe-form'
 import { useNavigate } from '@solidjs/router'
 import { recipeCost } from '../functions/recipe-cost'
+import { formatCost } from "../functions/format-cost";
 
 export const RecipeList = () => {
   const [app, actions] = useApp()
@@ -61,7 +62,7 @@ export const RecipeList = () => {
                 <div class="mb-2 flex items-center justify-between">
                   <div>
                     <h3 class="truncate text-lg font-bold text-gray-800">
-                      {recipe().title} (cost: {recipeCost(recipe(), app)})
+                      {recipe().title} ({formatCost(recipeCost(recipe(), app))})
                     </h3>
                     <p class="truncate text-gray-800">{recipe().description}</p>
                   </div>
