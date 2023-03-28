@@ -24,22 +24,22 @@ export const IngredientList = () => {
 
   return (
     <>
-      <div class="mb-4 flex justify-between">
-        <h1 class="text-2xl font-bold text-gray-800">Ingredients</h1>
-        <Show when={!isCreating()}>
-          <Button label="New ingredient" onClick={() => setCreating(true)} />
+      <div class="mb-4 rounded bg-white px-8 py-6 shadow-lg">
+        <div class="mb-4 flex items-baseline justify-between">
+          <h1 class="text-2xl font-bold text-gray-800">Ingredients</h1>
+          <Show when={!isCreating()}>
+            <Button label="New ingredient" onClick={() => setCreating(true)} />
+          </Show>
+        </div>
+        <Show when={isCreating()}>
+          <IngredientForm
+            title="New ingredient"
+            ingredient={null}
+            onSubmit={createIngredientAndStopCreating}
+            onCancel={() => setCreating(false)}
+            submitLabel="Create Ingredient"
+          />
         </Show>
-      </div>
-      <Show when={isCreating()}>
-        <IngredientForm
-          title="New ingredient"
-          ingredient={null}
-          onSubmit={createIngredientAndStopCreating}
-          onCancel={() => setCreating(false)}
-          submitLabel="Create Ingredient"
-        />
-      </Show>
-      <div class="mb-4 rounded bg-white p-8 shadow-lg">
         <Index
           each={app.ingredients}
           fallback={<p class="italic text-gray-700">No ingredients yet.</p>}

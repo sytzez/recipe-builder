@@ -26,22 +26,22 @@ export const RecipeList = () => {
 
   return (
     <>
-      <div class="mb-4 flex justify-between">
-        <h1 class="text-2xl font-bold text-gray-800">Recipes</h1>
-        <Show when={!isCreating()}>
-          <Button label="New recipe" onClick={() => setCreating(true)} />
+      <div class="mb-4 rounded bg-white px-8 py-6 shadow-lg">
+        <div class="mb-4 flex items-baseline justify-between">
+          <h1 class="text-2xl font-bold text-gray-800">Recipes</h1>
+          <Show when={!isCreating()}>
+            <Button label="New recipe" onClick={() => setCreating(true)} />
+          </Show>
+        </div>
+        <Show when={isCreating()}>
+          <RecipeForm
+            title="New recipe"
+            recipe={null}
+            onSubmit={createRecipeAndStopCreating}
+            onCancel={() => setCreating(false)}
+            submitLabel="Create recipe"
+          />
         </Show>
-      </div>
-      <Show when={isCreating()}>
-        <RecipeForm
-          title="New recipe"
-          recipe={null}
-          onSubmit={createRecipeAndStopCreating}
-          onCancel={() => setCreating(false)}
-          submitLabel="Create recipe"
-        />
-      </Show>
-      <div class="mb-4 rounded bg-white p-8 shadow-lg">
         <Index
           each={app.recipes}
           fallback={<p class="italic text-gray-700">No recipes yet.</p>}
