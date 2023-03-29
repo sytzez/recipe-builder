@@ -6,6 +6,7 @@ import { recipeCost } from '../functions/recipe-cost'
 import { formatCost } from '../functions/format-cost'
 import { Button } from '../components/elements/button'
 import { recipeIngredients } from '../functions/recipe-ingredients'
+import { BackButton } from "../components/elements/back-button";
 
 export const ShowRecipe = () => {
   const params = useParams()
@@ -22,7 +23,7 @@ export const ShowRecipe = () => {
   return (
     <div class="mx-auto mt-8 max-w-4xl rounded bg-white p-8 shadow-lg">
       <div class="mb-4">
-        <Button label="Back" onClick={() => navigate('/recipe-builder')} />
+        <BackButton onClick={() => navigate('/recipe-builder')} />
       </div>
       <Show
         when={recipe()}
