@@ -3,6 +3,7 @@ export const ViewButton = (props) => {
     <button
       onClick={props.onClick}
       title="View"
+      type="button"
       class="-m-1 rounded-full p-3 hover:bg-gray-100"
     >
       <svg

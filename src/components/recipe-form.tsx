@@ -59,6 +59,10 @@ export const RecipeForm = (props: RecipeFormProps) => {
     setEditingStepIndex(null)
   }
 
+  const deleteStep = (index: number) => {
+    setFields('steps', (steps) => steps.filter((_, i) => i !== index))
+  }
+
   createEffect(() => {
     if (props.onChange) {
       props.onChange(fields)
@@ -107,7 +111,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
                     <Show when={editingStepIndex() === null}>
                       <EditButton onClick={() => setEditingStepIndex(index)} />
                     </Show>
-                    <DeleteButton />
+                    <DeleteButton onClick={() => deleteStep(index)} />
                   </div>
                 </div>
               </Show>

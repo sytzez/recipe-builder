@@ -3,6 +3,7 @@ export const DeleteButton = (props) => {
     <button
       onClick={props.onClick}
       title="Delete"
+      type="button"
       class="-m-1 rounded-full p-3 text-red-600 hover:bg-gray-100"
     >
       <svg

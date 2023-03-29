@@ -3,6 +3,7 @@ export const BackButton = (props) => {
     <button
       onClick={props.onClick}
       title="Go back"
+      type="button"
       class="rounded-full bg-white p-3 hover:bg-gray-100"
     >
       <svg
