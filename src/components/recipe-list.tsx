@@ -62,7 +62,7 @@ export const RecipeList = () => {
               </Show>
               <Show when={editingRecipeId() !== id}>
                 <div class="mb-2 flex items-center justify-between">
-                  <div>
+                  <div class="min-w-0">
                     <h3 class="truncate text-lg font-bold text-gray-800">
                       {recipe().title}
                     </h3>
@@ -73,7 +73,7 @@ export const RecipeList = () => {
                     </p>
                   </div>
                   <Show when={editingRecipeId() === null}>
-                    <div>
+                    <div class="whitespace-nowrap">
                       <ViewButton
                         onClick={() =>
                           navigate(`/recipe-builder/recipes/${id}`)

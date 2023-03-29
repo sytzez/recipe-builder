@@ -59,7 +59,7 @@ export const IngredientList = () => {
               </Show>
               <Show when={editingIngredientId() !== id}>
                 <div class="mb-2 flex items-center justify-between">
-                  <div>
+                  <div class="min-w-0">
                     <h3 class="truncate text-lg font-bold text-gray-800">
                       {ingredient().name}
                     </h3>
