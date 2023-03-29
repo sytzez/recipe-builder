@@ -6,8 +6,8 @@ import { RecipeForm } from './recipe-form'
 import { useNavigate } from '@solidjs/router'
 import { recipeCost } from '../functions/recipe-cost'
 import { formatCost } from '../functions/format-cost'
-import { ViewButton } from "./elements/view-button";
-import { EditButton } from "./elements/edit-button";
+import { ViewButton } from './elements/view-button'
+import { EditButton } from './elements/edit-button'
 
 export const RecipeList = () => {
   const [app, actions] = useApp()

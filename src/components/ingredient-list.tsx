@@ -4,7 +4,7 @@ import { Button } from './elements/button'
 import { useApp } from '../stores/app-context'
 import { Ingredient } from '../schemata/ingredient'
 import { formatCost } from '../functions/format-cost'
-import { EditButton } from "./elements/edit-button";
+import { EditButton } from './elements/edit-button'
 
 export const IngredientList = () => {
   const [app, actions] = useApp()

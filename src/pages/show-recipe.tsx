@@ -1,4 +1,12 @@
-import { createEffect, createMemo, createSignal, For, Index, Show, untrack } from "solid-js";
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  For,
+  Index,
+  Show,
+  untrack,
+} from 'solid-js'
 import { useApp } from '../stores/app-context'
 import { useNavigate, useParams } from '@solidjs/router'
 import { stepDescription } from '../functions/step-description'
@@ -6,9 +14,9 @@ import { recipeCost } from '../functions/recipe-cost'
 import { formatCost } from '../functions/format-cost'
 import { Button } from '../components/elements/button'
 import { recipeIngredients } from '../functions/recipe-ingredients'
-import { BackButton } from "../components/elements/back-button";
-import { RecipeForm } from "../components/recipe-form";
-import { EditButton } from "../components/elements/edit-button";
+import { BackButton } from '../components/elements/back-button'
+import { RecipeForm } from '../components/recipe-form'
+import { EditButton } from '../components/elements/edit-button'
 
 export const ShowRecipe = () => {
   const params = useParams()
@@ -17,7 +25,7 @@ export const ShowRecipe = () => {
   const [editingRecipe, setEditingRecipe] = createSignal(null)
   const [isEditing, setEditing] = createSignal(false)
 
-  const recipe = () => isEditing() ? editingRecipe() : app.recipes[params.id]
+  const recipe = () => (isEditing() ? editingRecipe() : app.recipes[params.id])
 
   const startEditing = () => {
     setEditingRecipe(recipe())
@@ -26,11 +34,11 @@ export const ShowRecipe = () => {
 
   return (
     <div
-      class="mx-auto mt-8 rounded bg-white p-8 shadow-lg flex"
+      class="mx-auto mt-8 flex rounded bg-white p-8 shadow-lg"
       classList={{
         'max-w-4xl': !isEditing(),
-        'max-w-7xl': isEditing()
-    }}
+        'max-w-7xl': isEditing(),
+      }}
     >
       <section class="flex-grow">
         <div class="mb-4">

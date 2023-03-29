@@ -3,7 +3,7 @@ import { UnitType, unitTypes } from '../schemata/unit-type'
 import { Cost } from '../types/cost'
 import { useForm } from '../utilities/use-form'
 import { TextInput } from './form/text-input'
-import { ingredientSchema } from "../schemata/ingredient";
+import { ingredientSchema } from '../schemata/ingredient'
 import { ValidationError } from 'yup'
 import { SubmitButton } from './form/submit-button'
 import { CancelButton } from './form/cancel-button'
