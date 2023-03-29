@@ -91,7 +91,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
           {(step, index) => (
             <>
               <Show when={editingStepIndex() !== index}>
-                <div class="mb-2 flex items-baseline justify-between">
+                <div class="mb-2 flex items-center justify-between">
                   <p class="mr-2 truncate text-gray-800">
                     {stepDescription(step(), app)}
                   </p>
