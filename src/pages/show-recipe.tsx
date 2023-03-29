@@ -34,7 +34,7 @@ export const ShowRecipe = () => {
 
   return (
     <div
-      class="mx-auto mt-8 flex rounded bg-white p-8 shadow-lg"
+      class="mx-auto mt-8 flex flex-wrap rounded bg-white p-8 shadow-lg"
       classList={{
         'max-w-4xl': !isEditing(),
         'max-w-7xl': isEditing(),

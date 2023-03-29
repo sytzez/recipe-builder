@@ -73,7 +73,7 @@ export const RecipeList = () => {
                       {recipe().description}
                     </p>
                   </div>
-                  <div className="whitespace-nowrap">
+                  <div class="whitespace-nowrap">
                     <Show when={editingRecipeId() === null}>
                       <ViewButton
                         onClick={() =>

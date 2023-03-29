@@ -73,7 +73,9 @@ export const IngredientList = () => {
                     <Show when={editingIngredientId() === null}>
                       <EditButton onClick={() => setEditingIngredientId(id)} />
                     </Show>
-                    <DeleteButton onClick={() => actions.deleteIngredient(id)} />
+                    <DeleteButton
+                      onClick={() => actions.deleteIngredient(id)}
+                    />
                   </div>
                 </div>
               </Show>
