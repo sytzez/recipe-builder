@@ -6,6 +6,8 @@ import { RecipeForm } from './recipe-form'
 import { useNavigate } from '@solidjs/router'
 import { recipeCost } from '../functions/recipe-cost'
 import { formatCost } from '../functions/format-cost'
+import { ViewButton } from "./elements/view-button";
+import { EditButton } from "./elements/edit-button";
 
 export const RecipeList = () => {
   const [app, actions] = useApp()
@@ -71,17 +73,13 @@ export const RecipeList = () => {
                     </p>
                   </div>
                   <Show when={editingRecipeId() === null}>
-                    <div class="flex gap-2">
-                      <Button
-                        label="View"
+                    <div>
+                      <ViewButton
                         onClick={() =>
                           navigate(`/recipe-builder/recipes/${id}`)
                         }
                       />
-                      <Button
-                        label="Edit"
-                        onClick={() => setEditingRecipeId(id)}
-                      />
+                      <EditButton onClick={() => setEditingRecipeId(id)} />
                     </div>
                   </Show>
                 </div>

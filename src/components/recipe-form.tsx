@@ -13,6 +13,7 @@ import { stepDescription } from '../functions/step-description'
 import { recipeCost } from '../functions/recipe-cost'
 import { formatCost } from '../functions/format-cost'
 import { RecipeStep } from "../schemata/recipe-step";
+import { EditButton } from "./elements/edit-button";
 
 export interface RecipeFormProps {
   recipe: Recipe | null
@@ -95,8 +96,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
                     {stepDescription(step(), app)}
                   </p>
                   <Show when={editingStepIndex() === null}>
-                    <Button
-                      label="Edit step"
+                    <EditButton
                       onClick={() => setEditingStepIndex(index)}
                     />
                   </Show>
