@@ -81,7 +81,7 @@ export const RecipeList = () => {
                         }
                       />
                       <EditButton onClick={() => setEditingRecipeId(id)} />
-                      <DeleteButton />
+                      <DeleteButton onClick={() => actions.deleteRecipe(id)} />
                     </Show>
                   </div>
                 </div>

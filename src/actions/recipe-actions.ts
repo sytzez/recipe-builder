@@ -17,5 +17,8 @@ export const createRecipeActions = (
     updateRecipe: (id: number) => (recipe: Recipe) => {
       setAppState('recipes', id, recipe)
     },
+    deleteRecipe: (id: number) => {
+      setAppState('recipes', (recipes) => recipes.filter((_, index) => index !== id))
+    }
   }
 }
