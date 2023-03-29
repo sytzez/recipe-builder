@@ -26,7 +26,7 @@ interface Fields {
 
 const emptyFields: Fields = {
   name: '',
-  unitType: '',
+  unitType: unitTypes[0],
   cost: '',
 }
 
