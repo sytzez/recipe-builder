@@ -1,4 +1,4 @@
-# ShowRecipe Builder
+# Recipe Builder
 
 I started this project to learn SolidJS, TailwindCSS, Yup and Vitest. In the app you can create recipes from ingredients. It can then calculate the cost of the recipe.
 
