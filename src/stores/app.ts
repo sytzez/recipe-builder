@@ -7,6 +7,7 @@ import {
 } from '../actions/ingredient-actions'
 import { createRecipeActions, RecipeActions } from '../actions/recipe-actions'
 import { Store } from 'solid-js/store'
+import { createDemoActions, DemoActions } from '../actions/demo-actions'
 
 export interface AppState {
   ingredients: readonly Ingredient[]
@@ -18,7 +19,7 @@ export const initialAppState: AppState = {
   recipes: [],
 }
 
-export type AppActions = IngredientActions & RecipeActions
+export type AppActions = IngredientActions & RecipeActions & DemoActions
 
 export const createApp = (): [Store<AppState>, AppActions] => {
   const [appState, setAppState] = createLocalStore('appState', initialAppState)
@@ -26,6 +27,7 @@ export const createApp = (): [Store<AppState>, AppActions] => {
   const actions = {
     ...createIngredientActions(appState, setAppState),
     ...createRecipeActions(appState, setAppState),
+    ...createDemoActions(appState, setAppState),
   }
 
   return [appState, actions]

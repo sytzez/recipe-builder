@@ -89,6 +89,14 @@ export const RecipeList = () => {
             </>
           )}
         </Index>
+        <Show when={app.recipes.length === 0}>
+          <div class="mt-4">
+            <Button
+              label="Load demo data"
+              onClick={() => actions.loadDemoData()}
+            />
+          </div>
+        </Show>
       </div>
     </>
   )
