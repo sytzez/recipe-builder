@@ -55,6 +55,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         required
       />
       <Select
+        name="unitType"
         label="Unit of measurement"
         initialValue={initialFields.unitType}
         onChange={setFieldUsingEvent('unitType')}

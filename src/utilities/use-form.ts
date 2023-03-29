@@ -20,10 +20,10 @@ export const useForm = <Fields extends object>(
       // @ts-ignore This should work because fieldName is a key of Fields
       setFields(fieldName, inputElement.value)
     },
-    onSubmit: async (event: SubmitEvent) => {
+    onSubmit: (event: SubmitEvent) => {
       event.preventDefault()
       try {
-        submitCallback(await schema.validate(fields))
+        submitCallback(schema.validateSync(fields))
       } catch (e) {
         setValidationError(e)
       }
