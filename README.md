@@ -19,7 +19,7 @@ Then serve the app in development mode:
 npm run dev
 ```
 
-The app should become accessible at `htttp://localhost:3000/recipe-builder`.
+The app should become accessible at `http://localhost:3000/recipe-builder`.
 
 ## Quick overview of the project
 
