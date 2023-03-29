@@ -1,4 +1,4 @@
-import { createEffect, createMemo, createSignal, For, Index, Show } from "solid-js";
+import { createEffect, createMemo, createSignal, For, Index, Show, untrack } from "solid-js";
 import { useApp } from '../stores/app-context'
 import { useNavigate, useParams } from '@solidjs/router'
 import { stepDescription } from '../functions/step-description'
@@ -14,8 +14,15 @@ export const ShowRecipe = () => {
   const params = useParams()
   const navigate = useNavigate()
   const [app, actions] = useApp()
-  const recipe = () => app.recipes[params.id]
+  const [editingRecipe, setEditingRecipe] = createSignal(null)
   const [isEditing, setEditing] = createSignal(false)
+
+  const recipe = () => isEditing() ? editingRecipe() : app.recipes[params.id]
+
+  const startEditing = () => {
+    setEditingRecipe(recipe())
+    setEditing(true)
+  }
 
   return (
     <div
@@ -74,17 +81,18 @@ export const ShowRecipe = () => {
       <section class="flex-grow-0">
         <Show
           when={isEditing()}
-          fallback={<EditButton onClick={() => setEditing(true)} />}
+          fallback={<EditButton onClick={startEditing} />}
         >
           <div class="w-96">
             <RecipeForm
-              recipe={recipe()}
+              recipe={untrack(editingRecipe)}
               title="Edit recipe"
               submitLabel="Update recipe"
               onSubmit={(recipe) => {
                 actions.updateRecipe(params.id)(recipe)
                 setEditing(false)
               }}
+              onChange={setEditingRecipe}
               onCancel={() => setEditing(false)}
             />
           </div>

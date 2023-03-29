@@ -1,7 +1,7 @@
 import { useForm } from '../utilities/use-form'
 import { TextInput } from './form/text-input'
 import { Recipe, recipeSchema } from "../schemata/recipe";
-import { createSignal, Index, Show } from 'solid-js'
+import { createEffect, createSignal, Index, Show } from "solid-js";
 import { Button } from './elements/button'
 import { RecipeStepForm } from './recipe-step-form'
 import { SubmitButton } from './form/submit-button'
@@ -20,6 +20,7 @@ export interface RecipeFormProps {
   title: string
   submitLabel: string
   onSubmit: (recipe: Recipe) => void
+  onChange: ((recipe: Recipe) => void) | null
   onCancel: () => void
 }
 
@@ -56,6 +57,12 @@ export const RecipeForm = (props: RecipeFormProps) => {
     setFields('steps', index, step)
     setEditingStepIndex(null)
   }
+
+  createEffect(() => {
+    if (props.onChange) {
+      props.onChange(fields)
+    }
+  })
 
   return (
     <form
