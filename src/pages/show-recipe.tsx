@@ -34,67 +34,70 @@ export const ShowRecipe = () => {
 
   return (
     <div
-      class="mx-auto mt-8 flex flex-wrap rounded bg-white p-8 shadow-lg"
+      class="mx-auto mt-8 rounded bg-white p-8 shadow-lg"
       classList={{
         'max-w-4xl': !isEditing(),
         'max-w-7xl': isEditing(),
       }}
     >
-      <section class="flex-grow">
-        <div class="mb-4">
-          <BackButton onClick={() => navigate('/recipe-builder')} />
-        </div>
-        <Show
-          when={recipe()}
-          fallback={<p class="italic text-gray-800">Recipe not found.</p>}
-        >
-          {(recipe) => (
-            <>
-              <h1 class="mb-4 text-4xl font-bold text-gray-800">
-                {recipe.title}
-              </h1>
-              <p class="mb-4 text-gray-800">{recipe.description}</p>
-              <h2 class="mb-2 text-xl font-bold text-gray-800">Ingredients</h2>
-              <For
-                each={recipeIngredients(recipe, app)}
-                fallback={<p class="mb-2 italic text-gray-800">None.</p>}
-              >
-                {(ingredientQuantity) => (
-                  <p class="mb-2 text-gray-800">
-                    {ingredientQuantity.quantity}{' '}
-                    {ingredientQuantity.ingredient.unitType}
-                    {' of '}
-                    {ingredientQuantity.ingredient.name}.
-                  </p>
-                )}
-              </For>
-              <p class="font-bold text-gray-800">Total cost</p>
-              <p class="mb-4 block text-lg font-bold text-gray-800">
-                {formatCost(recipeCost(recipe, app))}
-              </p>
-              <h2 class="mb-2 text-xl font-bold text-gray-800">Instructions</h2>
-              <Index
-                each={recipe.steps}
-                fallback={<p class="italic text-gray-800">None.</p>}
-              >
-                {(step) => (
-                  <>
-                    <p class="mb-4 text-gray-800">
-                      {stepDescription(step(), app)}
-                    </p>
-                  </>
-                )}
-              </Index>
-            </>
-          )}
+      <div class="mb-4 flex justify-between">
+        <BackButton onClick={() => navigate('/recipe-builder')} />
+        <Show when={!isEditing()}>
+          <EditButton onClick={startEditing} />
         </Show>
-      </section>
-      <section class="flex-grow-0">
-        <Show
-          when={isEditing()}
-          fallback={<EditButton onClick={startEditing} />}
-        >
-          <div class="w-96">
+      </div>
+      <div
+        class="grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2"
+        classList={{'grid': isEditing()}}
+      >
+        <section class="col-span-1 lg:col-span-3">
+          <Show
+            when={recipe()}
+            fallback={<p class="italic text-gray-800">Recipe not found.</p>}
+          >
+            {(recipe) => (
+              <>
+                <h1 class="mb-4 text-4xl font-bold text-gray-800">
+                  {recipe.title}
+                </h1>
+                <p class="mb-4 text-gray-800">{recipe.description}</p>
+                <h2 class="mb-2 text-xl font-bold text-gray-800">Ingredients</h2>
+                <For
+                  each={recipeIngredients(recipe, app)}
+                  fallback={<p class="mb-2 italic text-gray-800">None.</p>}
+                >
+                  {(ingredientQuantity) => (
+                    <p class="mb-2 text-gray-800">
+                      {ingredientQuantity.quantity}{' '}
+                      {ingredientQuantity.ingredient.unitType}
+                      {' of '}
+                      {ingredientQuantity.ingredient.name}.
+                    </p>
+                  )}
+                </For>
+                <p class="font-bold text-gray-800">Total cost</p>
+                <p class="mb-4 block text-lg font-bold text-gray-800">
+                  {formatCost(recipeCost(recipe, app))}
+                </p>
+                <h2 class="mb-2 text-xl font-bold text-gray-800">Instructions</h2>
+                <Index
+                  each={recipe.steps}
+                  fallback={<p class="italic text-gray-800">None.</p>}
+                >
+                  {(step) => (
+                    <>
+                      <p class="mb-4 text-gray-800">
+                        {stepDescription(step(), app)}
+                      </p>
+                    </>
+                  )}
+                </Index>
+              </>
+            )}
+          </Show>
+        </section>
+        <section class="col-span-1 lg:col-span-2">
+          <Show when={isEditing()}>
             <RecipeForm
               recipe={untrack(editingRecipe)}
               title="Edit recipe"
@@ -106,9 +109,9 @@ export const ShowRecipe = () => {
               onChange={setEditingRecipe}
               onCancel={() => setEditing(false)}
             />
-          </div>
-        </Show>
-      </section>
+          </Show>
+        </section>
+      </div>
     </div>
   )
 }

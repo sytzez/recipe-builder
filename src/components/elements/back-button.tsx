@@ -4,7 +4,7 @@ export const BackButton = (props) => {
       onClick={props.onClick}
       title="Go back"
       type="button"
-      class="rounded-full bg-white p-3 hover:bg-gray-100"
+      class="rounded-full bg-white p-3 -m-1 hover:bg-gray-100"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
