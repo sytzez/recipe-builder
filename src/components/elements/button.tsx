@@ -7,7 +7,7 @@ export const Button = (props: ButtonProps) => {
   return (
     <button
       onClick={props.onClick}
-      class="focus:shadow-outline whitespace-nowrap rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"
+      class="focus:shadow-outline whitespace-nowrap rounded-full bg-green-500 py-2 px-4 font-bold text-white hover:bg-green-700 focus:outline-none"
     >
       {props.label}
     </button>
