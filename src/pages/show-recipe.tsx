@@ -26,8 +26,11 @@ export const ShowRecipe = () => {
 
   return (
     <div
-      class="mx-auto mt-8 max-w-4xl rounded bg-white p-8 shadow-lg flex"
-      classList={{'max-w-8xl': isEditing()}}
+      class="mx-auto mt-8 rounded bg-white p-8 shadow-lg flex"
+      classList={{
+        'max-w-4xl': !isEditing(),
+        'max-w-7xl': isEditing()
+    }}
     >
       <section class="flex-grow">
         <div class="mb-4">
