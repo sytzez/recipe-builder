@@ -109,7 +109,7 @@ export const RecipeStepForm = (props: RecipeStepFormProps) => {
           step=".01"
         />
       </Show>
-      <div>
+      <div class="flex flex-wrap gap-2">
         <SubmitButton label={props.submitLabel} />
         <CancelButton onClick={props.onCancel} />
       </div>

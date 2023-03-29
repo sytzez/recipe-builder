@@ -3,7 +3,7 @@ export const EditButton = (props) => {
     <button
       onClick={props.onClick}
       title="Edit"
-      class="rounded-full bg-white p-3 hover:bg-gray-100"
+      class="-m-1 rounded-full p-3 hover:bg-gray-100"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

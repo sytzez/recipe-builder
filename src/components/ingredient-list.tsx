@@ -5,6 +5,7 @@ import { useApp } from '../stores/app-context'
 import { Ingredient } from '../schemata/ingredient'
 import { formatCost } from '../functions/format-cost'
 import { EditButton } from './elements/edit-button'
+import { DeleteButton } from './elements/delete-button'
 
 export const IngredientList = () => {
   const [app, actions] = useApp()
@@ -68,9 +69,12 @@ export const IngredientList = () => {
                       {ingredient().unitType}
                     </p>
                   </div>
-                  <Show when={editingIngredientId() === null}>
-                    <EditButton onClick={() => setEditingIngredientId(id)} />
-                  </Show>
+                  <div class="whitespace-nowrap">
+                    <Show when={editingIngredientId() === null}>
+                      <EditButton onClick={() => setEditingIngredientId(id)} />
+                    </Show>
+                    <DeleteButton />
+                  </div>
                 </div>
               </Show>
             </>

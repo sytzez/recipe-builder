@@ -8,6 +8,7 @@ import { recipeCost } from '../functions/recipe-cost'
 import { formatCost } from '../functions/format-cost'
 import { ViewButton } from './elements/view-button'
 import { EditButton } from './elements/edit-button'
+import { DeleteButton } from './elements/delete-button'
 
 export const RecipeList = () => {
   const [app, actions] = useApp()
@@ -72,16 +73,17 @@ export const RecipeList = () => {
                       {recipe().description}
                     </p>
                   </div>
-                  <Show when={editingRecipeId() === null}>
-                    <div class="whitespace-nowrap">
+                  <div className="whitespace-nowrap">
+                    <Show when={editingRecipeId() === null}>
                       <ViewButton
                         onClick={() =>
                           navigate(`/recipe-builder/recipes/${id}`)
                         }
                       />
                       <EditButton onClick={() => setEditingRecipeId(id)} />
-                    </div>
-                  </Show>
+                      <DeleteButton />
+                    </Show>
+                  </div>
                 </div>
               </Show>
             </>

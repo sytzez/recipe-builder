@@ -70,7 +70,7 @@ export const IngredientForm: Component = (props: IngredientFormProps) => {
         required
         step=".01"
       />
-      <div>
+      <div class="flex flex-wrap gap-2">
         <SubmitButton label={props.submitLabel} />
         <CancelButton onClick={props.onCancel} />
       </div>

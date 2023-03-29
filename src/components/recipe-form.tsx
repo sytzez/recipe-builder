@@ -14,6 +14,7 @@ import { recipeCost } from '../functions/recipe-cost'
 import { formatCost } from '../functions/format-cost'
 import { RecipeStep } from '../schemata/recipe-step'
 import { EditButton } from './elements/edit-button'
+import { DeleteButton } from './elements/delete-button'
 
 export interface RecipeFormProps {
   recipe: Recipe | null
@@ -102,9 +103,12 @@ export const RecipeForm = (props: RecipeFormProps) => {
                   <p class="mr-2 truncate text-gray-800">
                     {stepDescription(step(), app)}
                   </p>
-                  <Show when={editingStepIndex() === null}>
-                    <EditButton onClick={() => setEditingStepIndex(index)} />
-                  </Show>
+                  <div class="whitespace-nowrap">
+                    <Show when={editingStepIndex() === null}>
+                      <EditButton onClick={() => setEditingStepIndex(index)} />
+                    </Show>
+                    <DeleteButton />
+                  </div>
                 </div>
               </Show>
               <Show when={editingStepIndex() === index}>
@@ -138,7 +142,7 @@ export const RecipeForm = (props: RecipeFormProps) => {
       <p class="mb-4 block text-lg font-bold text-gray-800">
         {formatCost(recipeCost(fields, app))}
       </p>
-      <div>
+      <div class="flex flex-wrap gap-2">
         <SubmitButton label={props.submitLabel} />
         <CancelButton onClick={props.onCancel} />
       </div>
