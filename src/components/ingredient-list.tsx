@@ -39,7 +39,7 @@ export const IngredientList = () => {
             ingredient={null}
             onSubmit={createIngredientAndStopCreating}
             onCancel={() => setCreating(false)}
-            submitLabel="Create Ingredient"
+            submitLabel="Create ingredient"
           />
         </Show>
         <Index
