@@ -41,7 +41,7 @@ export const ShowRecipe = () => {
       }}
     >
       <div class="mb-4 flex justify-between">
-        <BackButton onClick={() => navigate('/recipe-builder')} />
+        <BackButton onClick={() => navigate('/')} />
         <Show when={!isEditing()}>
           <EditButton onClick={startEditing} />
         </Show>

@@ -12,5 +12,5 @@ export default defineConfig({
   test: {
     includeSource: ['src/**/*.{ts,tsx}'],
   },
-  base: '/recipe-builder/',
+  base: '/',
 })

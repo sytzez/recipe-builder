@@ -77,7 +77,7 @@ export const RecipeList = () => {
                     <Show when={editingRecipeId() === null}>
                       <ViewButton
                         onClick={() =>
-                          navigate(`/recipe-builder/recipes/${id}`)
+                          navigate(`/recipes/${id}`)
                         }
                       />
                       <EditButton onClick={() => setEditingRecipeId(id)} />

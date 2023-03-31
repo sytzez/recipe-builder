@@ -8,17 +8,15 @@ const App: Component = () => {
     <>
       <nav class="bg-white shadow">
         <div class="mx-auto flex h-16 max-w-7xl items-center justify-around px-8 sm:justify-between">
-          <a href="/recipe-builder" class="text-2xl font-bold text-gray-800">
+          <a href="/" class="text-2xl font-bold text-gray-800">
             👩‍🍳 Recipe Builder 👨‍🍳
           </a>
         </div>
       </nav>
       <main class="mx-auto max-w-7xl">
         <Routes>
-          <Route path="/recipe-builder">
-            <Route path="/" component={Home} />
-            <Route path="/recipes/:id" component={ShowRecipe} />
-          </Route>
+          <Route path="/" component={Home} />
+          <Route path="/recipes/:id" component={ShowRecipe} />
         </Routes>
       </main>
     </>
