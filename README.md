@@ -2,7 +2,7 @@
 
 I started this project to learn SolidJS, TailwindCSS, Yup and Vitest. In the app you can create recipes from ingredients. It can then calculate the cost of the recipe.
 
-See the app live at https://sytzez.github.io/recipe-builder/.
+See the app live at https://recipe-builder-chi.vercel.app/.
 
 ## Getting Started
 
